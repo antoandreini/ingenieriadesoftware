@@ -1,8 +1,8 @@
-<<<<<<< HEAD
 source 'http://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
+gem 'bootstrap-sass', '~> 3.3.7'
 gem 'rails', '4.2.5.1'
 # Use sqlite3 as the database for Active Record
 #gem 'pg'
@@ -47,43 +47,5 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'hirb'
-=======
-source "https://rubygems.org"
-
-gemspec
-
-gem "rails", "~> 5.0.0"
-gem "omniauth", "~> 1.3"
-gem "oauth2"
-gem "omniauth-oauth2"
-gem "rdoc"
-
-gem "activemodel-serializers-xml", github: "rails/activemodel-serializers-xml"
-
-gem "rails-controller-testing"
-
-gem "responders", "~> 2.1"
-
-group :test do
-  gem "omniauth-facebook"
-  gem "omniauth-openid"
-  gem "webrat", "0.7.3", require: false
-  gem "mocha", "~> 1.1", require: false
-end
-
-platforms :jruby do
-  gem "activerecord-jdbc-adapter"
-  gem "activerecord-jdbcsqlite3-adapter"
-  gem "jruby-openssl"
-end
-
-platforms :ruby do
-  gem "sqlite3"
-end
-
-# TODO:
-# group :mongoid do
-#   gem "mongoid", "~> 4.0.0"
-# end
->>>>>>> d2ea28b3dbbf3e11dc9e800179fb89c53d61fc71
- gem "devise"
+gem 'paperclip', git: 'git://github.com/thoughtbot/paperclip.git'
+gem 'devise'

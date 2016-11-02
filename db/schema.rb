@@ -11,6 +11,65 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20161101025333) do
+
+  create_table "gauchadas", force: :cascade do |t|
+    t.string   "titulo"
+    t.string   "descripcion"
+    t.string   "ubicacion"
+    t.boolean  "cumplida"
+    t.date     "fecha"
+    t.string   "foto_file_name"
+    t.string   "foto_content_type"
+    t.integer  "foto_file_size"
+    t.datetime "foto_updated_at"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  create_table "logros", force: :cascade do |t|
+    t.integer  "puntuacion"
+    t.string   "estado"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "pagos", force: :cascade do |t|
+    t.decimal  "monto"
+    t.date     "fecha"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "postulacions", force: :cascade do |t|
+    t.integer  "id_usuario"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "pregunta", force: :cascade do |t|
+    t.string   "cuerpo"
+    t.date     "fecha"
+    t.string   "respuesta"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "usuarios", force: :cascade do |t|
+    t.boolean  "administrador"
+    t.string   "nombre"
+    t.string   "apellido"
+    t.integer  "puntuacion"
+    t.string   "telefono"
+    t.date     "fechaNac"
+    t.string   "ubicacion"
+    t.string   "foto_file_name"
+    t.string   "foto_content_type"
+    t.integer  "foto_file_size"
+    t.datetime "foto_updated_at"
+    t.string   "email"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
 
 end
