@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  administrador: false
+  nombre: MyString
+  apellido: MyString
+  puntuacion: 1
+  telefono: MyString
+  fechaNac: 2016-10-31
+  ubicacion: MyString
+  foto: 
+  email: MyString
+
+two:
+  administrador: false
+  nombre: MyString
+  apellido: MyString
+  puntuacion: 1
+  telefono: MyString
+  fechaNac: 2016-10-31
+  ubicacion: MyString
+  foto: 
+  email: MyString
