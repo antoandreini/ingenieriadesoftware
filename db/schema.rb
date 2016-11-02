@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161101025333) do
+ActiveRecord::Schema.define(version: 20161102173028) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "gauchadas", force: :cascade do |t|
     t.string   "titulo"
@@ -19,12 +22,9 @@ ActiveRecord::Schema.define(version: 20161101025333) do
     t.string   "ubicacion"
     t.boolean  "cumplida"
     t.date     "fecha"
-    t.string   "foto_file_name"
-    t.string   "foto_content_type"
-    t.integer  "foto_file_size"
-    t.datetime "foto_updated_at"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "imagen"
   end
 
   create_table "logros", force: :cascade do |t|
@@ -63,13 +63,10 @@ ActiveRecord::Schema.define(version: 20161101025333) do
     t.string   "telefono"
     t.date     "fechaNac"
     t.string   "ubicacion"
-    t.string   "foto_file_name"
-    t.string   "foto_content_type"
-    t.integer  "foto_file_size"
-    t.datetime "foto_updated_at"
     t.string   "email"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.string   "imagen"
   end
 
 end
