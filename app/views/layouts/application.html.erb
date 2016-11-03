@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Gauchadas</title>
+  <title>Gauchada</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
@@ -11,14 +11,13 @@
 
 <div class="container">
 
+  <%= image_tag "header.png", title: "Header", class: "img-responsive" %>
   <% if flash[:notice] %>
     <div class="alert alert-info"> <%= flash[:notice] %> </div>
   <% end %>
 
 	<%= yield %>
-  <footer>
-<%= link_to 'Ayuda', '/ayuda' %>
-</footer>
+
 </div>
 
 </body>
