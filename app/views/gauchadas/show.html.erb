@@ -1,2 +1,9 @@
 <h1>Gauchadas#show</h1>
-<p>Find me in app/views/gauchadas/show.html.erb</p>
+
+<h1> <%= @gauchada.titulo %> </h1>
+<p> <%= @gauchada.descripcion %> </p>
+<p> <%= @gauchada.fecha %> </p>
+<p>"La gauchada se encuentra:" <%= @gauchada.cumplida %> </p>
+<% @gauchada.postulaciones.all.each do |gauchada| %>
+<p> <%= postulaciones.id_usuario%> </p>
+<%end%>
