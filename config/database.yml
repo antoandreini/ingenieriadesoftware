@@ -4,7 +4,6 @@
 #   Ensure the SQLite 3 gem is defined in your Gemfile
 #   gem 'sqlite3'
 #
-<<<<<<< HEAD
 #default: &default
 #  adapter: postgresql
 #  pool: 5
@@ -33,46 +32,14 @@ default: &default
 development:
   <<: *default
   database: db/development.sqlite3
-=======
-default: &default
-  adapter: postgresql
-  pool: 5
-  timeout: 5000
-  user: "gauchada"
-  password: "gauchada"
-
-development:
-  <<: *default
-  database: db/developmentpg
->>>>>>> 9d7bf3d232295e2188d07ee16e1159117379bd66
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: db/testpg
+  database: db/test.sqlite3
 
 production:
   <<: *default
-  database: db/productionpg
-
-#default: &default
-#  adapter: sqlite3
-#  pool: 5
-#  timeout: 5000
-
-#development:
-#  <<: *default
-#  database: db/development.sqlite3
-
-# Warning: The database defined as "test" will be erased and
-# re-generated from your development database when you run "rake".
-# Do not set this db to the same as development or production.
-#test:
-#  <<: *default
-#  database: db/test.sqlite3
-
-#production:
-#  <<: *default
-#  database: db/production.sqlite3
+  database: db/production.sqlite3
