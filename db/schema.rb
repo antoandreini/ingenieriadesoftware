@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
@@ -91,3 +92,77 @@ ActiveRecord::Schema.define(version: 20161103000712) do
   end
 
 end
+=======
+# encoding: UTF-8
+# This file is auto-generated from the current state of the database. Instead
+# of editing this file, please use the migrations feature of Active Record to
+# incrementally modify your database, and then regenerate this schema definition.
+#
+# Note that this schema.rb definition is the authoritative source for your
+# database schema. If you need to create the application database on another
+# system, you should be using db:schema:load, not running all the migrations
+# from scratch. The latter is a flawed and unsustainable approach (the more migrations
+# you'll amass, the slower it'll run and the greater likelihood for issues).
+#
+# It's strongly recommended that you check this file into your version control system.
+
+ActiveRecord::Schema.define(version: 20161102173028) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "gauchadas", force: :cascade do |t|
+    t.string   "titulo"
+    t.string   "descripcion"
+    t.string   "ubicacion"
+    t.boolean  "cumplida"
+    t.date     "fecha"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "imagen"
+  end
+
+  create_table "logros", force: :cascade do |t|
+    t.integer  "puntuacion"
+    t.string   "estado"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "pagos", force: :cascade do |t|
+    t.decimal  "monto"
+    t.date     "fecha"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "postulacions", force: :cascade do |t|
+    t.integer  "id_usuario"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "pregunta", force: :cascade do |t|
+    t.string   "cuerpo"
+    t.date     "fecha"
+    t.string   "respuesta"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "usuarios", force: :cascade do |t|
+    t.boolean  "administrador"
+    t.string   "nombre"
+    t.string   "apellido"
+    t.integer  "puntuacion"
+    t.string   "telefono"
+    t.date     "fechaNac"
+    t.string   "ubicacion"
+    t.string   "email"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.string   "imagen"
+  end
+
+end
+>>>>>>> bc56137c8636f32fb485f7612ed40edec058b348
