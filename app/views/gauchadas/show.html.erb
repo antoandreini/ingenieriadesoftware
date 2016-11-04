@@ -1,9 +1,16 @@
-<h1>Gauchadas#show</h1>
-
-<h1> <%= @gauchada.titulo %> </h1>
-<p> <%= @gauchada.descripcion %> </p>
-<p> <%= @gauchada.fecha %> </p>
-<p>"La gauchada se encuentra:" <%= @gauchada.cumplida %> </p>
-<% @gauchada.postulaciones.all.each do |gauchada| %>
-<p> <%= postulaciones.id_usuario%> </p>
-<%end%>
+<h1 ALIGN=CENTER> <%= @gauchada.titulo %> </h1>
+<p ALIGN=CENTER><%= image_tag @gauchada.imagen, size:"200x200"%> </p>
+<p   ALIGN=CENTER> <%= @gauchada.descripcion %> </p>
+<p   ALIGN=CENTER> <%= @gauchada.fecha %> </p>
+<% if @gauchada.cumplida %>
+   <p   ALIGN=CENTER> "La gauchada se encuentra cumplida" </p>
+  <%else %>
+    <p   ALIGN=CENTER> "La gauchada no se encuentra cumplida" </p>
+   <% end %>
+<% if current_user.id == @gauchada.usuario_id %>
+ <p  ALIGN=CENTER> <%= link_to "Editar", edit_gauchada_path(@gauchada), class: 'btn btn-info btn-sm' %>
+                    <%= link_to "Eliminar", @gauchada, method: :delete, class: 'btn btn-danger btn-sm' %></p>
+<% end %>
+<% usuario=Usuario.find(@gauchada.usuario_id) %>
+<p ALIGN=CENTER> <%= usuario.nombre %>
+  <%= image_tag usuario.imagen, size:"100x100"%> </p>
