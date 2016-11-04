@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161102173028) do
+ActiveRecord::Schema.define(version: 20161104124841) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20161102173028) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.string   "imagen"
+    t.integer  "usuario_id"
   end
 
   create_table "logros", force: :cascade do |t|
@@ -39,20 +40,24 @@ ActiveRecord::Schema.define(version: 20161102173028) do
     t.date     "fecha"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "usuario_id"
   end
 
   create_table "postulacions", force: :cascade do |t|
     t.integer  "id_usuario"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "gauchada_id"
   end
 
   create_table "pregunta", force: :cascade do |t|
     t.string   "cuerpo"
     t.date     "fecha"
     t.string   "respuesta"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "gauchada_id"
+    t.integer  "usuario_id"
   end
 
   create_table "usuarios", force: :cascade do |t|
