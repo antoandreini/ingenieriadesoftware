@@ -12,12 +12,14 @@
         <a class="thumbnail" href="#">
         <%= image_tag "logo.png", title: "Logo", class: "img-responsive" %></a>
       </div>
-
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
+          <li><button type="submit" class="btn"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Iniciar sesión</button></li>
+          <li><button type="submit" class="btn btn-warning"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> No tenés cuenta? ¡Registrate!</button></li>
+      
           <li><a href="#"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Nueva gauchada</a></li>
-          <li class="dropdown">
+            <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-collapse-down" aria-hidden="true"></span> Opciones <span class="caret"></span></a>
             <ul class="dropdown-menu">
               <li><a href="#"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Ver perfil</a></li>
@@ -33,6 +35,14 @@
           <button type="submit" class="btn btn-warning"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Buscar</button>
         </form>
         <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-collapse-down" aria-hidden="true"></span> Administrador <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Ver Listado de logros</a></li>
+              <li><a href="#"><span class="glyphicon glyphicon-piggy-bank" aria-hidden="true"></span> Ver reporte de ingresos</a></li>
+              <li><a href="#"><span class="glyphicon glyphicon-list" aria-hidden="true"></span> Ver ranking de usuarios</a></li>
+            </ul>
+          </li>
           <li><button type="button" class="btn btn-warning"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span> Ayuda </button>
           </li>
             </ul>
