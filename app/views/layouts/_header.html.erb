@@ -24,6 +24,9 @@
                 <li><a href="#"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span><%= link_to 'Configuración', edit_user_registration_path, :class => 'navbar-link' %> </a></li>
                 <li><a href="#"><span class="glyphicon glyphicon-usd" aria-hidden="true"></span>Comprar puntos</a></li>
                 <li><a href="#"><span class="glyphicon glyphicon-off" aria-hidden="true"></span><%= link_to "Cerrar sesión", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %></a></li>
+                <% if user_signed_in? and current_user.administrador == true %>
+                 <li> <a href="/logros"> <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Ver Logros </a> </li>
+                <% end %>
               </ul>
             </li>
 
