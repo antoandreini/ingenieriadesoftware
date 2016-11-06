@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
@@ -12,7 +12,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 20161103000712) do
+
+ActiveRecord::Schema.define(version: 20161104124841) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
 
   create_table "gauchadas", force: :cascade do |t|
     t.string   "titulo"
@@ -20,12 +27,19 @@ ActiveRecord::Schema.define(version: 20161103000712) do
     t.string   "ubicacion"
     t.boolean  "cumplida"
     t.date     "fecha"
+
     t.string   "foto_file_name"
     t.string   "foto_content_type"
     t.integer  "foto_file_size"
     t.datetime "foto_updated_at"
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
+
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.string   "imagen"
+    t.integer  "usuario_id"
+
   end
 
   create_table "logros", force: :cascade do |t|
@@ -40,18 +54,28 @@ ActiveRecord::Schema.define(version: 20161103000712) do
     t.date     "fecha"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+
+    t.integer  "usuario_id"
+
   end
 
   create_table "postulacions", force: :cascade do |t|
     t.integer  "id_usuario"
+
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "gauchada_id"
+
   end
 
   create_table "pregunta", force: :cascade do |t|
     t.string   "cuerpo"
     t.date     "fecha"
     t.string   "respuesta"
+
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -74,6 +98,13 @@ ActiveRecord::Schema.define(version: 20161103000712) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
 
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "gauchada_id"
+    t.integer  "usuario_id"
+  end
+
+
   create_table "usuarios", force: :cascade do |t|
     t.boolean  "administrador"
     t.string   "nombre"
@@ -82,6 +113,7 @@ ActiveRecord::Schema.define(version: 20161103000712) do
     t.string   "telefono"
     t.date     "fechaNac"
     t.string   "ubicacion"
+
     t.string   "foto_file_name"
     t.string   "foto_content_type"
     t.integer  "foto_file_size"
@@ -165,4 +197,12 @@ ActiveRecord::Schema.define(version: 20161102173028) do
   end
 
 end
->>>>>>> bc56137c8636f32fb485f7612ed40edec058b348
+
+    t.string   "email"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.string   "imagen"
+  end
+
+end
+
