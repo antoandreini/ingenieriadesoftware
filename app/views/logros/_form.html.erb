@@ -1,9 +1,9 @@
 
 <%= form_for @logro do |f| %>
 <%= f.label :estado %>
-<%= f.text_field :estado %>
-<%= f.label :puntuacion %>
+<%= f.text_field :estado,:placeholder=>'Nombre del logro' %>
+<%= f.label :puntuación %>
 <%= f.number_field :puntuacion %>
-<%= f.submit 'Guardar' %>
+<%= f.submit 'Guardar',:class=>'btn btn-warning' %>
 
 <% end %>
