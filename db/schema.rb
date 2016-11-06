@@ -1,4 +1,3 @@
-
 # encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
@@ -12,14 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-
-ActiveRecord::Schema.define(version: 20161103000712) do
-
-ActiveRecord::Schema.define(version: 20161104124841) do
+ActiveRecord::Schema.define(version: 20161106145028) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
 
   create_table "gauchadas", force: :cascade do |t|
     t.string   "titulo"
@@ -27,19 +22,10 @@ ActiveRecord::Schema.define(version: 20161104124841) do
     t.string   "ubicacion"
     t.boolean  "cumplida"
     t.date     "fecha"
-
-    t.string   "foto_file_name"
-    t.string   "foto_content_type"
-    t.integer  "foto_file_size"
-    t.datetime "foto_updated_at"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
-
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.string   "imagen"
-    t.integer  "usuario_id"
-
+    t.integer  "user_id"
   end
 
   create_table "logros", force: :cascade do |t|
@@ -54,30 +40,24 @@ ActiveRecord::Schema.define(version: 20161104124841) do
     t.date     "fecha"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-
-    t.integer  "usuario_id"
-
+    t.integer  "user_id"
   end
 
   create_table "postulacions", force: :cascade do |t|
     t.integer  "id_usuario"
-
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.integer  "gauchada_id"
-
   end
 
   create_table "pregunta", force: :cascade do |t|
     t.string   "cuerpo"
     t.date     "fecha"
     t.string   "respuesta"
-
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "gauchada_id"
+    t.integer  "user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -93,94 +73,18 @@ ActiveRecord::Schema.define(version: 20161104124841) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
-  end
-
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.integer  "gauchada_id"
-    t.integer  "usuario_id"
-  end
-
-
-  create_table "usuarios", force: :cascade do |t|
+    t.date     "fecha_nac"
     t.boolean  "administrador"
     t.string   "nombre"
     t.string   "apellido"
     t.integer  "puntuacion"
     t.string   "telefono"
-    t.date     "fechaNac"
     t.string   "ubicacion"
-
-    t.string   "foto_file_name"
-    t.string   "foto_content_type"
-    t.integer  "foto_file_size"
-    t.datetime "foto_updated_at"
-    t.string   "email"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
-  end
-
-end
-=======
-# encoding: UTF-8
-# This file is auto-generated from the current state of the database. Instead
-# of editing this file, please use the migrations feature of Active Record to
-# incrementally modify your database, and then regenerate this schema definition.
-#
-# Note that this schema.rb definition is the authoritative source for your
-# database schema. If you need to create the application database on another
-# system, you should be using db:schema:load, not running all the migrations
-# from scratch. The latter is a flawed and unsustainable approach (the more migrations
-# you'll amass, the slower it'll run and the greater likelihood for issues).
-#
-# It's strongly recommended that you check this file into your version control system.
-
-ActiveRecord::Schema.define(version: 20161102173028) do
-
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
-  create_table "gauchadas", force: :cascade do |t|
-    t.string   "titulo"
-    t.string   "descripcion"
-    t.string   "ubicacion"
-    t.boolean  "cumplida"
-    t.date     "fecha"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
     t.string   "imagen"
   end
 
-  create_table "logros", force: :cascade do |t|
-    t.integer  "puntuacion"
-    t.string   "estado"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "pagos", force: :cascade do |t|
-    t.decimal  "monto"
-    t.date     "fecha"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "postulacions", force: :cascade do |t|
-    t.integer  "id_usuario"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "pregunta", force: :cascade do |t|
-    t.string   "cuerpo"
-    t.date     "fecha"
-    t.string   "respuesta"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
   create_table "usuarios", force: :cascade do |t|
     t.boolean  "administrador"
@@ -197,12 +101,3 @@ ActiveRecord::Schema.define(version: 20161102173028) do
   end
 
 end
-
-    t.string   "email"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-    t.string   "imagen"
-  end
-
-end
-
