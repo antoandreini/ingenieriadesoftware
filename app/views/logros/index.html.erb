@@ -1,0 +1,24 @@
+<h1>Logros</h1>
+<h1> <%= link_to "Nuevo Logro", new_logro_path, class: 'btn btn-info btn-sm' %> </h1>
+<table class="table table-striped">	
+	<tr>
+		<th> Estado </th>
+		<th> Puntuacion </th>
+		<th> Acciones </th>
+
+
+		
+	</tr>
+	<% Logro.all.each do |logros| %>
+	<tr>
+
+		<td> <%= logros.estado%>  </td>
+		<td> <%= logros.puntuacion%>  </td>
+		<td>
+				<%= link_to "Editar", edit_logro_path(logros), class: 'btn btn-info btn-sm' %>
+				<%= link_to "Eliminar", logros, method: :delete, class: 'btn btn-danger btn-sm' %>
+		</td>
+	</tr>
+
+<% end %>
+</table>

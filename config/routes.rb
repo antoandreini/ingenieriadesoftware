@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   devise_for :users
-
+  resources :logros
   resources :gauchadas
   root 'gauchadas#index'
 

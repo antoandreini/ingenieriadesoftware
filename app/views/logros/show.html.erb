@@ -1,0 +1,16 @@
+<h1>Logro</h1>
+<h1> <%= link_to "Nuevo Logro", new_logro_path, class: 'btn btn-info btn-sm' %> </h1>
+<table class="table table-striped">	
+	<tr>
+		<th> Estado </th>
+		<th> Puntuacion </th>
+			
+	</tr>
+	<tr>
+
+		<td> <%= @logro.estado%>  </td>
+		<td> <%= @logro.puntuacion%>  </td>
+		
+	</tr>
+
+</table>
