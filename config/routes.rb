@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
+
+  devise_for :users
+  resources :logros
   resources :gauchadas
   root 'gauchadas#index'
+
 
 
   # The priority is based upon order of creation: first created -> highest priority.
