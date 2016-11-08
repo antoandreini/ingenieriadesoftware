@@ -1,18 +1,60 @@
-<h1 ALIGN=CENTER> <%= @gauchada.titulo %> </h1>
-<p ALIGN=CENTER><%= image_tag @gauchada.imagen, size:"200x200"%> </p>
-<p   ALIGN=CENTER> <%= @gauchada.descripcion %> </p>
-<p   ALIGN=CENTER> <%= @gauchada.fecha %> </p>
-<% if @gauchada.cumplida %>
-   <p   ALIGN=CENTER> "La gauchada se encuentra cumplida" </p>
-  <%else %>
-    <p   ALIGN=CENTER> "La gauchada no se encuentra cumplida" </p>
-   <% end %>
-<% if current_user.id == @gauchada.user_id %>
- <p  ALIGN=CENTER> <%= link_to "Editar", edit_gauchada_path(@gauchada), class: 'btn btn-info btn-sm' %>
-                    <%= link_to "Eliminar", @gauchada, method: :delete, class: 'btn btn-danger btn-sm' %></p>
-<% end %>
-<% usuario=User.find(@gauchada.user_id) %>
- <p ALIGN=CENTER> <%= usuario.nombre %>
-<% if usuario.imagen != nil %>
-    <%= image_tag usuario.imagen, size:"100x100"%> </p>
- <% end %>
+<div class="row">
+  <div class="col-md-4">
+    <% usuario=User.find(@gauchada.user_id) %>
+    <% @logro=Logro.all %>
+    <% @logro.each do |logro| %>
+    <% if logro.puntuacion <= usuario.puntuacion %>
+        <% @l=logro %>
+        <% end %>
+    <% end %>
+<div class="row">
+        <div class="col-xs-12 col-sm-8 col-md-12">
+            <div class="well well-sm">
+                <div class="row">
+                    <div class="col-sm-6 col-md-4">
+                      <% if usuario.imagen != nil %>
+                          <%= image_tag usuario.imagen, size:"150x200", class: "img-rounded img-responsive"%>
+                      <% else %>
+                       <img src="http://static.topixcdn.com/pics/user_avatar_empty.png" alt="" class="img-rounded img-responsive" >
+                       <% end %>
+                    </div>
+                    <div class="col-sm-6 col-md-8">
+                        <h4><%= usuario.nombre %></h4>
+                        <small><cite><font color="#f0ad4e"><%=@l.estado %></font> </cite></small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+  </div>
+                <div class="col-md-8 text-center">
+                    <div class="box">
+                        <div class="box-content">
+                            <h1 class="tag-title"><%= @gauchada.titulo %></h1>
+                            <hr />
+                            <% if @gauchada.imagen != nil %>
+                            <p ALIGN=CENTER><%= image_tag @gauchada.imagen%></p>
+                            <% else %>
+                            <p ALIGN=CENTER><img src="http://mgiep.unesco.org/wp-content/plugins/ajax-search-lite/img/default.jpg" size="300x300" class="img-responsive"></p>
+                            <%end %>
+                            <p><%= @gauchada.descripcion %></p>
+                            <br />
+                            <% if @gauchada.cumplida %>
+                               <h6> La gauchada se encuentra cumplida </h6>
+                              <%else %>
+                                <h6> La gauchada no se encuentra cumplida </h6>
+                                <% if user_signed_in? and current_user.id == @gauchada.user_id %>
+                                 <p  ALIGN=CENTER> <%= link_to "Editar", edit_gauchada_path(@gauchada), class: 'btn btn-warning btn-sm' %>
+                                                    <%= link_to "Eliminar", @gauchada, method: :delete, class: 'btn btn-danger btn-sm' %></p>
+                                <% else %>
+                                <%if user_signed_in? %>
+                                <a href="#" class="btn btn-block btn-warning">Postularse</a>
+                               <% end %>
+                              <% end %>
+                            <% end %>
+                        </div>
+                    </div>
+                  </div>
+</div>
