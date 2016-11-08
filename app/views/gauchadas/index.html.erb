@@ -3,8 +3,12 @@
 <% @gauchada=Gauchada.all %>
   <% @gauchada.each do |gauchada| %>
 	<tr>
-      <td ALIGN=CENTER> <h3>  <%=  link_to gauchada.titulo, gauchada %></h3	> </td>
-      <td ALIGN=CENTER> <%=image_tag gauchada.imagen, size:"100x100" %> </td>
-      <td ALIGN=CENTER> <h3>  <%= gauchada.ubicacion %> </h3> </td>
+      <td> <h3>  <%=  link_to gauchada.titulo, gauchada %></h3	> </td>
+      <td> <%=image_tag gauchada.imagen, size:"100x100" %> </td>
+      <td> <h3>  <%= gauchada.ubicacion %> </h3> </td>
     </tr>
 <% end %>
+</table>
+	<% if @gauchadas.size == 0 %>
+		<p  ALIGN=CENTER> <td colspan="3"> No hay gauchadas </p>
+	<% end %>

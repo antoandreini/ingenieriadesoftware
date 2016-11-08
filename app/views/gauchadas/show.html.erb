@@ -7,10 +7,12 @@
   <%else %>
     <p   ALIGN=CENTER> "La gauchada no se encuentra cumplida" </p>
    <% end %>
-<% if current_user.id == @gauchada.usuario_id %>
+<% if current_user.id == @gauchada.user_id %>
  <p  ALIGN=CENTER> <%= link_to "Editar", edit_gauchada_path(@gauchada), class: 'btn btn-info btn-sm' %>
                     <%= link_to "Eliminar", @gauchada, method: :delete, class: 'btn btn-danger btn-sm' %></p>
 <% end %>
-<% usuario=Usuario.find(@gauchada.usuario_id) %>
-<p ALIGN=CENTER> <%= usuario.nombre %>
-  <%= image_tag usuario.imagen, size:"100x100"%> </p>
+<% usuario=User.find(@gauchada.user_id) %>
+ <p ALIGN=CENTER> <%= usuario.nombre %>
+<% if usuario.imagen != nil %>
+    <%= image_tag usuario.imagen, size:"100x100"%> </p>
+ <% end %>
