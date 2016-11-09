@@ -50,8 +50,8 @@
                               <%else %>
                                 <h6> La gauchada no se encuentra cumplida </h6>
                                 <% if user_signed_in? and current_user.id == @gauchada.user_id %>
-                                 <p  ALIGN=CENTER> <%= link_to "Editar", edit_gauchada_path(@gauchada), class: 'btn btn-warning btn-sm' %>
-                                                    <%= link_to "Eliminar", @gauchada, method: :delete, class: 'btn btn-danger btn-sm' %></p>
+                                 <p  ALIGN=CENTER> <a href="#" class="btn btn-block btn-warning">Editar</a>
+                                                    <a href="#" class="btn btn-block btn-danger">Eliminar</a></p>
                                 <% else %>
                                 <%if user_signed_in? %>
                                 <a href="#" class="btn btn-block btn-warning">Postularse</a>
