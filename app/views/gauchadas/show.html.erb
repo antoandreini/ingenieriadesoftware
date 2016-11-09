@@ -1,12 +1,16 @@
 <div class="row">
   <div class="col-md-4">
     <% usuario=User.find(@gauchada.user_id) %>
+    <% if Logro.count==1 %>
+      <% @l=Logro.find(1) %>
+    <%else%>
     <% @logro=Logro.all %>
     <% @logro.each do |logro| %>
     <% if logro.puntuacion <= usuario.puntuacion %>
         <% @l=logro %>
         <% end %>
     <% end %>
+    <%end %>
 <div class="row">
         <div class="col-xs-12 col-sm-8 col-md-12">
             <div class="well well-sm">

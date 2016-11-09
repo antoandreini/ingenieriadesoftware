@@ -1,13 +1,17 @@
 class LogrosController < ApplicationController
-	
+
   def index
   end
 
 
   def destroy
-	@logro= Logro.find(params[:id])
-  	flash[:notice] = "Logro eliminado"
-  	@logro.destroy
+		if(Logro.count==1)
+			flash[:notice] = "No se pudo eliminar el logro: Debe existir al menos un logro en todo momento"
+		else
+			@logro= Logro.find(params[:id])
+  		flash[:notice] = "Logro eliminado"
+  		@logro.destroy
+		end
     redirect_to(logros_path)
   end
 
@@ -21,9 +25,9 @@ class LogrosController < ApplicationController
 	@logro = Logro.new
 
   end
-  
 
- 
+
+
   def create
 	@logro= Logro.new(params.require(:logro).permit(:estado, :puntuacion))
  	if @logro.save
@@ -34,11 +38,11 @@ class LogrosController < ApplicationController
    		render 'new'
 	end
   end
-  
+
 
   def edit
 	@logro= Logro.find(params[:id])
-  end 
+  end
 
 
   def update
