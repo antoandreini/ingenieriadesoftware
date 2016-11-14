@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :logros
   resources :gauchadas
   root 'gauchadas#index'
-
+  get '/comprar_puntos/edit', to: 'comprar_puntos#edit'
 
 
   # The priority is based upon order of creation: first created -> highest priority.
