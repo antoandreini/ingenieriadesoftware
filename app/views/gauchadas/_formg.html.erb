@@ -1,0 +1,14 @@
+
+<%= form_for @gauchada do |g| %>
+<%= g.label :titulo %>
+<%= g.text_field :titulo,:placeholder=>'titulo de la gauchada' %>
+<%= g.label :descripcion %>
+<%= g.text_field :descripcion,:placeholder=>'descripcion de la gauchada' %>
+<%= g.label :ubicacion %>
+<%= g.text_field :ubicacion,:placeholder=>'ubicacion de la gauchada' %>
+<%= g.label :imagen %>
+<%= g.url_field :imagen,:placeholder=>'URL de la imagen' %>
+
+
+<%= g.submit 'Guardar',:class=>'btn btn-warning' %>
+<% end %>
