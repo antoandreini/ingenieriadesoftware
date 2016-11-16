@@ -15,14 +15,13 @@
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">  <% if user_signed_in? %>
-            <li><p class = "navbar-text">Bienvenido/a <strong><%= current_user.email %></strong>.</p></li>
+            <li><p class = "navbar-text">Bienvenido/a <strong><%= current_user.nombre %></strong>.</p></li>
             <li><p class = "navbar-text">Tenés <strong><%= current_user.puntos_para_gauchadas %> puntos</strong> para pedir gauchadas.</p></li>
             <li><a href="/gauchadas/new"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Nueva gauchada</a></li>
               <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-collapse-down" aria-hidden="true"></span> Opciones <span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <li><%= link_to 'Ver mis gauchadas', misgauchadas_path, :class => 'navbar-link' %></li>
-                <li><a href="#"> Ver perfil</a></li>
                 <li><%= link_to 'Configuración', edit_user_registration_path, :class => 'navbar-link' %></li>
                 <li><a href="/comprar_puntos/edit">Comprar puntos</a></li>
                 <li role="separator" class="divider"></li>

@@ -1,5 +1,6 @@
 <% @gauchada=Gauchada.all %>
   <% @gauchada.each do |gauchada| %>
+  <% if gauchada.cumplida==false %>
   <div class="row">
         <div class="col-md-4"></div>
         <div class="col-md-4">
@@ -17,6 +18,7 @@
         </div>
         <div class="col-md-4"></div>
   </div>
+  <%end%>
 <% end %>
 
 	<% if @gauchadas.size == 0 %>
