@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get '/misgauchadas', to: 'gauchadas#misgauchadas'
   root 'gauchadas#index'
   get '/comprar_puntos/edit', to: 'comprar_puntos#edit'
+  get '/comprar_puntos/actualizar', to: 'comprar_puntos#actualizar'
 
 
   # The priority is based upon order of creation: first created -> highest priority.
