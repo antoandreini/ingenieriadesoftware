@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   devise_for :users
   resources :logros
+  resources :postulacions
   resources :gauchadas
   get '/misgauchadas', to: 'gauchadas#misgauchadas'
   root 'gauchadas#index'
