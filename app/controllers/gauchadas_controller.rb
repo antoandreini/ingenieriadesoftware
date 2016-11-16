@@ -52,13 +52,10 @@ class GauchadasController < ApplicationController
     @gauchada= Gauchada.find(params[:id])
       flash[:notice] = "Gauchada eliminada"
       @gauchada.destroy
-    
     redirect_to(gauchadas_path)
-
   end
-  
+
   def misgauchadas
     @gauchadas=Gauchada.where(user_id: current_user.id)
   end
- 
 end
