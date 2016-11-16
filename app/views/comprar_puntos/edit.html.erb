@@ -1,0 +1,25 @@
+<div class="border-form-div">
+  <div class="col-md-12">
+  <%= form_for(@user) do |u| %>
+  <%= f.select :tipo_tarjeta, ['Visa', 'MasterCard'] %>
+  <%= f.label :tarjeta %>
+  <%= f.number_field :tarjeta,required: true,:placeholder=>'Ingrese el numero de su tarjeta' %>
+  <%= f.label :codigo %>
+  <%= f.number_field :codigo,required: true,:in => 000..999,:placeholder=>'Ingrese el número secreto de su tarjeta' %>
+  <div class="row">
+    <%= f.label :fecha_expiracion %>
+    <div class="col-md-6">
+      <%= f.number_field :mes,required: true,:in => 01..12,:placeholder=>'Ingrese el mes de expiración de su tarjeta' %>
+    </div>
+    <div class="col-md-6">
+      <%= f.number_field :anio,required: true,:in => 16..99,:placeholder=>'Ingrese el año de expiración de su tarjeta' %>
+    </div>
+  </div>
+  <div class="row">
+    <%= f.label :cantidad %>
+    <%= f.select :cantidad, [['1 punto - $2',1], ['5 puntos - $8',5],['10 puntos -$12',10]] %>
+  </div>
+  <%= f.submit 'Guardar',:class=>'btn btn-warning' %>
+  <% end %>
+</div>
+</div>
