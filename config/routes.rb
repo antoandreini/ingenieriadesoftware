@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'password_resets/new'
+
   devise_for :users
   resources :logros
   resources :postulacions
