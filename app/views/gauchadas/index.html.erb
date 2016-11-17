@@ -1,6 +1,4 @@
-<%= @q %>
-<% @gauchada=Gauchada.all %>
-  <% @gauchada.each do |gauchada| %>
+<% @gauchadas.each do |gauchada| %>
   <% if gauchada.cumplida==false %>
   <div class="row">
         <div class="col-md-4"></div>

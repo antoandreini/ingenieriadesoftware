@@ -7,13 +7,11 @@ class GauchadasController < ApplicationController
 
   def index
     @q = params[:q]
-    if ! params[:q].present?
+    if !@q
        @gauchadas=Gauchada.all
      else
-       @gauchadas = Gauchada.titulo.where(:titulo => @q)
-       @gauchadas = Gauchada.where(:ubicacion => @q)
-       @gauchadas = Gauchada.descripcion.where(:descripcion => @q)
-    end
+       @gauchadas = Gauchada.where(:titulo => @q)
+     end
   end
 
   def show
@@ -35,8 +33,6 @@ class GauchadasController < ApplicationController
 
   def new
   @gauchada = Gauchada.new
-
-
   end
 
   def edit
@@ -65,6 +61,7 @@ class GauchadasController < ApplicationController
   def misgauchadas
     @gauchadas=Gauchada.where(user_id: current_user.id)
   end
+
   def marcar
     @gauchada= Gauchada.find(params[:id])
     @gauchada.cumplida=true
