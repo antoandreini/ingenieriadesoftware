@@ -1,0 +1,16 @@
+<%= form_for @postulacion do |g| %>
+<%= g.hidden_field :gauchada_id  %>
+<div class="row">
+<%= g.label :fecha_de_realizacion %>
+</div>
+<div class="row">
+<%= g.text_field :fechaderealizacion, :placeholder=>'Fecha de realizacion' %>
+</div>
+<div class="row">
+<%= g.label :comentarios %>
+</div>
+<div class="row">
+<%= g.text_field :comentarios,:placeholder=>'Comentarios' %>
+</div>
+<%= g.submit 'Guardar',:class=>'btn btn-warning' %>
+<% end %>

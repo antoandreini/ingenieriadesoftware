@@ -4,10 +4,14 @@ Rails.application.routes.draw do
 
   devise_for :users
   resources :logros
+  resources :postulacions
   resources :gauchadas
   get '/misgauchadas', to: 'gauchadas#misgauchadas'
+  get '/realizar', to: 'gauchadas#marcar'
   root 'gauchadas#index'
   get '/comprar_puntos/edit', to: 'comprar_puntos#edit'
+  get '/comprar_puntos/actualizar', to: 'comprar_puntos#actualizar'
+  get '/buscar', to: 'gauchadas#buscar'
 
 
   # The priority is based upon order of creation: first created -> highest priority.

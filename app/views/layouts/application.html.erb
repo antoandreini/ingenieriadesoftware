@@ -15,6 +15,11 @@
 <div class="container">
 
   <%= image_tag "header.png", title: "Header", class: "img-responsive" %>
+
+
+  <% if flash[:alert] %>
+    <div class="alert alert-warning"> <%= flash[:alert] %> </div>
+  <% end %>
   <% if flash[:notice] %>
     <div class="alert alert-warning"> <%= flash[:notice] %> </div>
   <% end %>

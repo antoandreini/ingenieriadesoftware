@@ -52,13 +52,29 @@ class GauchadasController < ApplicationController
     @gauchada= Gauchada.find(params[:id])
       flash[:notice] = "Gauchada eliminada"
       @gauchada.destroy
-    
     redirect_to(gauchadas_path)
-
   end
-  
+
   def misgauchadas
     @gauchadas=Gauchada.where(user_id: current_user.id)
   end
- 
+  def buscar
+    @gauchadas = Gauchada.search(params[:search]).order("created_at DESC")
+    if @gauchadas.present?
+      render 'buscar'
+    else
+      flash[:notice] = "No se encontraron gauchadas que coincidan con su busqueda"
+    end
+  end
+  def marcar
+    @gauchada= Gauchada.find(params[:id])
+    @gauchada.cumplida=true
+    if @gauchada.save
+        flash[:notice] = "Gauchada marcada como cumplida"
+        redirect_to (gauchadas_path)
+    else
+        flash[:notice] = "No se pudo marcar la gauchada como cumplida"
+        redirect_to (gauchadas_path)
+    end
+  end
 end

@@ -51,16 +51,22 @@
                                 <h6> La gauchada no se encuentra cumplida </h6>
                                 <% if user_signed_in? and current_user.id == @gauchada.user_id %>
                                   <td>
+                                  <%= link_to "Marcar como realizada", realizar_path(:id =>@gauchada.id ), class: "btn btn-block" %>
                                   <%= link_to "Editar", edit_gauchada_path(@gauchada),  class: "btn btn-block btn-warning" %>
                                   <%= link_to "Eliminar", @gauchada, method: :delete, class: 'btn btn-block btn-danger' %>
                                   </td>
                                 <% else %>
-                                <%if user_signed_in? %>
-                                <a href="#" class="btn btn-block btn-warning">Postularse</a>
-                               <% end %>
+                                   <% if user_signed_in? && @gauchada.postulacions.where(user:current_user).any? %>
+                                       <%= link_to "Eliminar postulacion", @gauchada.postulacions.where(user:current_user)[0], method: :delete, class: 'btn btn-block btn-danger' %>
+                                    <% else %>
+                                       <%= link_to "Postularse", new_postulacion_path(gauchadaid:@gauchada), class: 'btn btn-block btn-warning' %>
+                                    <% end %>
+                                <% end %>
                               <% end %>
-                            <% end %>
                         </div>
+                    </div>
+                  </div>
+</div>
                     </div>
                   </div>
 </div>
