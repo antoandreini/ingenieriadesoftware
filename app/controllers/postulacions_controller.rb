@@ -10,7 +10,6 @@ class PostulacionsController < ApplicationController
 
   def index
     @postulaciones=Postulacion.all
-    @postulacions=@postulacions.where() if params[:query]
   end
 
   def show

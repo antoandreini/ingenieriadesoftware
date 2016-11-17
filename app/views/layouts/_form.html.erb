@@ -1,0 +1,6 @@
+%= form_tag ‘/gauchadas/search’  class="navbar-form navbar-left"> do %>
+  <div class="form-group">
+    <text_field_tag :consulta, class="form-control" placeholder="Buscar gauchadas por titulo...">
+  </div>
+  <submit_tag class="btn btn-warning" :consulta, method: :root, params[:consulta]><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Buscar</button>
+</form_tag>

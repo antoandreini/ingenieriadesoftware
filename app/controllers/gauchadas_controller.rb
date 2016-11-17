@@ -6,7 +6,14 @@ class GauchadasController < ApplicationController
   end
 
   def index
-      @gauchadas=Gauchada.all
+    @q = params[:q]
+    if ! params[:q].present?
+       @gauchadas=Gauchada.all
+     else
+       @gauchadas = Gauchada.titulo.where(:titulo => @q)
+       @gauchadas = Gauchada.where(:ubicacion => @q)
+       @gauchadas = Gauchada.descripcion.where(:descripcion => @q)
+    end
   end
 
   def show
