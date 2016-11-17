@@ -1,4 +1,5 @@
 class GauchadasController < ApplicationController
+  
   def new
   end
 
@@ -15,20 +16,28 @@ class GauchadasController < ApplicationController
 
   def create
 # El método create recibe params = { gauchada: { titulo: string, ubicacion: string, descripcion: string, foto } }
-  @gauchada =Gauchada.new(params.require(:gauchada).permit(:titulo,:ubicacion,:descripcion,:imagen,:user_id))
-  @gauchada.user_id=current_user.id
-  if @gauchada.save
+    @gauchada =Gauchada.new(params.require(:gauchada).permit(:titulo,:ubicacion,:descripcion,:imagen,:user_id))
+    @user =current_user
+    @gauchada.user_id = @user.id
+    if @gauchada.save
+      @user.puntos_para_gauchadas -=1
+      @user.save
       flash[:notice] = "Gauchada creada correctamente"
       redirect_to (gauchadas_path)
-  else
+    else
       flash[:notice] = "No se pudo crear la gauchada"
       render 'new'
+    end
   end
-  end
+
 
   def new
+  if(current_user.puntos_para_gauchadas <= 0)
+    flash[:notice] = "No tiene suficientes puntos para pedir una gauchada"
+    redirect_to(comprar_puntos_edit_path)
+  else
   @gauchada = Gauchada.new
-
+end
 
   end
 
@@ -57,14 +66,6 @@ class GauchadasController < ApplicationController
 
   def misgauchadas
     @gauchadas=Gauchada.where(user_id: current_user.id)
-  end
-  def buscar
-    @gauchadas = Gauchada.search(params[:search]).order("created_at DESC")
-    if @gauchadas.present?
-      render 'buscar'
-    else
-      flash[:notice] = "No se encontraron gauchadas que coincidan con su busqueda"
-    end
   end
   def marcar
     @gauchada= Gauchada.find(params[:id])
