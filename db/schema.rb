@@ -82,6 +82,7 @@ ActiveRecord::Schema.define(version: 20161116183351) do
     t.string   "telefono"
     t.string   "ubicacion"
     t.string   "imagen"
+    t.datetime "date_of_birth"
     t.integer  "edad"
     t.integer  "numero_tarjeta"
     t.integer  "puntos_para_gauchadas",  default: 1
