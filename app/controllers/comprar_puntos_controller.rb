@@ -1,13 +1,21 @@
 class ComprarPuntosController < ApplicationController
-  def update
-  	@user= User.find(params[:id])
-    puntos=@user.puntos_para_gauchadas
-    if @user.update_attributes(params.require(:user).permit(:puntos+cantidad))
-     	flash[:notice] = "Se agregaron puntos a tu cuenta"
-   		redirect_to (logros_path)
+  def actualizar
+    @user = current_user
+    puntos=@user.puntos_para_gauchadas+(params[:cantidad].to_i)
+    if params[:tarjeta].length == 16 && params[:codigo].length== 3
+      @user.puntos_para_gauchadas=puntos
+      if @user.save
+     	  flash[:notice] = "Se agregaron puntos a tu cuenta"
+   		  redirect_to (gauchadas_path)
+      else
+    	  flash[:notice] = "Hubo un error, no se agregaron puntos a tu cuenta"
+      end
     else
-    	flash[:notice] = "Hubo un error, no se agregaron puntos a tu cuenta"
-   		render 'edit'
+      flash[:notice] = "Hay un error en el número o el código de la tarjeta"
+      render 'edit'
     end
+
+
   end
+
 end

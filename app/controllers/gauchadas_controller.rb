@@ -65,4 +65,15 @@ class GauchadasController < ApplicationController
   def misgauchadas
     @gauchadas=Gauchada.where(user_id: current_user.id)
   end
+  def marcar
+    @gauchada= Gauchada.find(params[:id])
+    @gauchada.cumplida=true
+    if @gauchada.save
+        flash[:notice] = "Gauchada marcada como cumplida"
+        redirect_to (gauchadas_path)
+    else
+        flash[:notice] = "No se pudo marcar la gauchada como cumplida"
+        redirect_to (gauchadas_path)
+    end
+  end
 end

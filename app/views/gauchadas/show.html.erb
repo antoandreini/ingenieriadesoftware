@@ -51,6 +51,7 @@
                                 <h6> La gauchada no se encuentra cumplida </h6>
                                 <% if user_signed_in? and current_user.id == @gauchada.user_id %>
                                   <td>
+                                  <%= link_to "Marcar como realizada", realizar_path(:id =>@gauchada.id ), class: "btn btn-block" %>
                                   <%= link_to "Editar", edit_gauchada_path(@gauchada),  class: "btn btn-block btn-warning" %>
                                   <%= link_to "Eliminar", @gauchada, method: :delete, class: 'btn btn-block btn-danger' %>
                                   </td>
