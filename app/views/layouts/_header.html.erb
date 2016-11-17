@@ -34,13 +34,12 @@
           <% end %>
 
 
+
         </ul>
-        <form class="navbar-form navbar-left">
-          <div class="form-group">
-            <input type="text" class="form-control" placeholder="Buscar gauchadas...">
-          </div>
-          <button type="submit" class="btn btn-warning"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Buscar</button>
-        </form>
+        <%= form_tag '/buscar', :method => "get", id: "search-form", class:"navbar-form navbar-left" do %>
+        <%= text_field_tag :search, params[:search], placeholder: "Buscar gauchadas" %>
+        <%= submit_tag "Buscar" , class:'btn btn-warning' %>
+        <% end %>
         <ul class="nav navbar-nav navbar-right">
           <% if user_signed_in? and current_user.administrador == true %>
            <li> <a href="/logros"> <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Ver Logros </a> </li>

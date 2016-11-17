@@ -58,6 +58,14 @@ class GauchadasController < ApplicationController
   def misgauchadas
     @gauchadas=Gauchada.where(user_id: current_user.id)
   end
+  def buscar
+    @gauchadas = Gauchada.search(params[:search]).order("created_at DESC")
+    if @gauchadas.present?
+      render 'buscar'
+    else
+      flash[:notice] = "No se encontraron gauchadas que coincidan con su busqueda"
+    end
+  end
   def marcar
     @gauchada= Gauchada.find(params[:id])
     @gauchada.cumplida=true
