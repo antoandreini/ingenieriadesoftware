@@ -73,6 +73,7 @@ end
       render 'buscar'
     else
       flash[:notice] = "No se encontraron gauchadas que coincidan con su busqueda"
+      redirect_to (gauchadas_path)
     end
   end
   def marcar
