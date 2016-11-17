@@ -33,9 +33,9 @@ module Gauchadas
       :address => "smtp.gmail.com",
       :port => 587,
       :authentication => :plain,
-      :domain => 'gmail.com',
-      :user_name => ENV['gauchadas2016@gmail.com'],
-      :password => ENV['ingenieriadesoftware'],
+      :domain => 'https://gauchadawebapps.herokuapp.com/',
+      :user_name => 'gauchadas2016@gmail.com',
+      :password => 'ingenieriadesoftware',
     }
   end
 end
