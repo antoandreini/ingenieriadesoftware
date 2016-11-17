@@ -9,7 +9,7 @@
   <%= form_tag '/comprar_puntos/actualizar' ,method: 'get' do %>
   <div class="form-group">
     <%= label_tag :nombre, 'Nombre del titular de la tarjeta' %>
-    <%= text_field_tag 'nombre',nil, placeholder: 'Nombre', required: true %>
+    <%= text_field_tag 'nombre',nil, placeholder: 'Nombre', required: true , class:"form-control"%>
   </div>
   <div class="form-group">
   <%= label_tag :tipo_tarjeta, 'Seleccione su tipo de tarjeta' %>
@@ -17,10 +17,10 @@
 </div>
 <div class="form-group">
   <%= label_tag :tarjeta, 'Número de tarjeta' %>
-  <%= text_field_tag 'tarjeta',nil, placeholder: 'XXXXXXXXXXXXXXXX', required: true, maxlength: 16,size: 16 %>
+  <%= text_field_tag 'tarjeta',nil, placeholder: 'XXXXXXXXXXXXXXXX', required: true, maxlength: 16,size: 16, class:"form-control" %>
 </div>
   <%= label_tag :codigo, 'Código secreto de la tarjeta' %>
-  <%= text_field_tag 'codigo',nil, placeholder:'XXX', required: true, maxlength: 3,size: 3%>
+  <%= text_field_tag 'codigo',nil, placeholder:'XXX', required: true, maxlength: 3,size: 3, class:"form-control"%>
   <div class="form-group">
     <%= label_tag :fecha_expiracion, 'Fecha de expiración de la tarjeta' %>
     <div class="form-group">
