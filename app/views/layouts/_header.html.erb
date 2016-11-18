@@ -37,7 +37,7 @@
 
         </ul>
         <%= form_tag '/buscar', :method => "get", id: "search-form", class:"navbar-form navbar-left" do %>
-        <%= text_field_tag :search, params[:search], placeholder: "Buscar gauchadas" %>
+        <%= text_field_tag :search, params[:search], placeholder: "Buscar gauchadas", class:"form-control" %>
         <%= submit_tag "Buscar" , class:'btn btn-warning' %>
         <% end %>
         <ul class="nav navbar-nav navbar-right">

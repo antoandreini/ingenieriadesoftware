@@ -59,7 +59,9 @@
                                    <% if user_signed_in? && @gauchada.postulacions.where(user:current_user).any? %>
                                        <%= link_to "Eliminar postulacion", @gauchada.postulacions.where(user:current_user)[0], method: :delete, class: 'btn btn-block btn-danger' %>
                                     <% else %>
+                                      <% if user_signed_in? %>
                                        <%= link_to "Postularse", new_postulacion_path(gauchadaid:@gauchada), class: 'btn btn-block btn-warning' %>
+                                       <% end %>
                                     <% end %>
                                 <% end %>
                               <% end %>
