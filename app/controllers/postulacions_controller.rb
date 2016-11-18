@@ -19,14 +19,19 @@ class PostulacionsController < ApplicationController
 
   def create
     @postulacion= Postulacion.new(params.require(:postulacion).permit(:fechaderealizacion, :comentarios, :gauchada_id))
-    @postulacion.user=current_user
-    if @postulacion.save
-        flash[:notice] = "Se ha postulado correctamente"
-    else
+    if @postulacion.fechaderealizacion >= Date.today
+      @postulacion.user=current_user
+      if @postulacion.save
+          flash[:notice] = "Se ha postulado correctamente"    
+         redirect_to @postulacion.gauchada
+        else
         flash[:notice] = "No se pudo postular correctamente"
         render 'new'
+      end
+    else
+      flash[:notice] = "Ingrese una fecha válida"
+      render 'new'
     end
-   redirect_to @postulacion.gauchada
    end
 
    def destroy
