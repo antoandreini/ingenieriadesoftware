@@ -18,6 +18,7 @@ class PostulacionsController < ApplicationController
 
   def create
     @postulacion= Postulacion.new(params.require(:postulacion).permit(:fechaderealizacion, :comentarios, :gauchada_id))
+    validates :comentarios, :presence => true
     @postulacion.user=current_user
     if @postulacion.save
         flash[:notice] = "Se ha postulado correctamente"

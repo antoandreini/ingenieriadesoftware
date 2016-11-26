@@ -23,7 +23,7 @@ module Gauchadas
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
     config.i18n.default_locale = :es
-     config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+     config.action_mailer.default_url_options = { host: 'https://gauchadawebapps.herokuapp.com/' }
     config.action_mailer.delivery_method = :smtp
     config.action_mailer.perform_deliveries = true
     config.action_mailer.raise_delivery_errors = true
@@ -33,9 +33,9 @@ module Gauchadas
       :address => "smtp.gmail.com",
       :port => 587,
       :authentication => :plain,
-      :domain => 'gmail.com',
-      :user_name => ENV['gauchadas2016@gmail.com'],
-      :password => ENV['ingenieriadesoftware'],
+      :domain => 'https://gauchadawebapps.herokuapp.com/',
+      :user_name => 'gauchadas2016@gmail.com',
+      :password => 'ingenieriadesoftware',
     }
   end
 end
