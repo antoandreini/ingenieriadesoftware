@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 20161116183351) do
   end
 
   create_table "pagos", force: :cascade do |t|
-    t.decimal  "monto" default: 0
+    t.decimal  "monto"
     t.date     "fecha"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

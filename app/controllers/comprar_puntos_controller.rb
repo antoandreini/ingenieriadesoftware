@@ -14,8 +14,5 @@ class ComprarPuntosController < ApplicationController
       flash[:notice] = "Hay un error en el número o el código de la tarjeta"
       render 'edit'
     end
-
-
   end
-
 end

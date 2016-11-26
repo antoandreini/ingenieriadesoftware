@@ -20,7 +20,7 @@ class GauchadasController < ApplicationController
     @user =current_user
     @gauchada.user_id = @user.id
     if @gauchada.save
-      @user.puntos_para_gauchadas -=1
+      @user.puntos_para_gauchadas-=1
       @user.save
       flash[:notice] = "Gauchada creada correctamente"
       @user=current_user.id
