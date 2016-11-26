@@ -1,0 +1,19 @@
+<% @gauchadas.each do |gauchada| %>
+<div class="row">
+      <div class="col-md-4"></div>
+      <div class="col-md-4">
+          <div class="well product-item">
+            <div class="pi-img-wrapper">
+              <% if (gauchada.imagen != nil) && (gauchada.imagen != "") %>
+               <%=image_tag gauchada.imagen,size:"300x300", class:"img-responsive" %>
+               <% else %>
+               <img src="http://mgiep.unesco.org/wp-content/plugins/ajax-search-lite/img/default.jpg" size="300x300" class="img-responsive">
+               <%end %>
+            </div>
+            <h3><%=  link_to gauchada.titulo, gauchada %></h3>
+            <div class="pi-price"> <%= gauchada.ubicacion.titleize %></div>
+          </div>
+      </div>
+      <div class="col-md-4"></div>
+</div>
+<% end %>

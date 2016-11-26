@@ -6,12 +6,7 @@ class GauchadasController < ApplicationController
   end
 
   def index
-    @q = params[:q]
-    if !@q
        @gauchadas=Gauchada.all
-     else
-       @gauchadas = Gauchada.where(:titulo => @q)
-     end
   end
 
   def show
@@ -24,6 +19,9 @@ class GauchadasController < ApplicationController
   @gauchada.user_id=current_user.id
   if @gauchada.save
       flash[:notice] = "Gauchada creada correctamente"
+      @user=current_user.id
+      @puntos=@user.puntos_para_gauchadas-1
+      @user.puntos_para_gauchadas=@puntos
       redirect_to (gauchadas_path)
   else
       flash[:notice] = "No se pudo crear la gauchada"
@@ -60,6 +58,15 @@ class GauchadasController < ApplicationController
 
   def misgauchadas
     @gauchadas=Gauchada.where(user_id: current_user.id)
+  end
+
+  def buscar
+    @gauchadas = Gauchada.search(params[:search]).order("created_at DESC")
+    if @gauchadas.present?
+      render 'buscar'
+    else
+      flash[:notice] = "No se encontraron gauchadas que coincidan con su busqueda"
+    end
   end
 
   def marcar
