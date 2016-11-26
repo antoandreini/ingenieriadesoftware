@@ -8,7 +8,6 @@ class Gauchada < ActiveRecord::Base
   validates :ubicacion, presence: true
  validates :imagen, format: { with: /.*/ }
   default_scope -> { order("created_at desc") }
-
 def self.search(search)
   where("ubicacion ILIKE ? OR titulo ILIKE ? OR descripcion ILIKE ?", "%#{search}%", "%#{search}%", "%#{search}%")
 end

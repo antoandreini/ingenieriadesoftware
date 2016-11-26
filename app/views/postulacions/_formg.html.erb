@@ -4,13 +4,13 @@
 <%= g.label :fecha_de_realizacion %>
 </div>
 <div class="row">
-<%= g.text_field :fechaderealizacion, :placeholder=>'Fecha de realizacion' %>
+<%= g.date_select :fechaderealizacion, :placeholder=>'Fecha de realizacion' %>
 </div>
 <div class="row">
 <%= g.label :comentarios %>
 </div>
 <div class="row">
-<%= g.text_field :comentarios,:placeholder=>'Comentarios' %>
+<%= g.text_field :comentarios,:placeholder=>'Comentarios', class:"form-control" %>
 </div>
 <%= g.submit 'Guardar',:class=>'btn btn-warning' %>
 <% end %>
