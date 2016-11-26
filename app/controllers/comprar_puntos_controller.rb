@@ -2,7 +2,7 @@ class ComprarPuntosController < ApplicationController
   def actualizar
     @user = current_user
     puntos=@user.puntos_para_gauchadas+(params[:cantidad].to_i)
-    if params[:tarjeta].length == 16 && params[:codigo].length== 3
+    if params[:tarjeta].length == 16 && params[:codigo].length== 3 && !!(params[:codigo] =~ /\A[-+]?[0-9]+\z/) && !!(params[:tarjeta] =~ /\A[-+]?[0-9]+\z/)
       @user.puntos_para_gauchadas=puntos
       if @user.save
      	  flash[:notice] = "Se agregaron puntos a tu cuenta"

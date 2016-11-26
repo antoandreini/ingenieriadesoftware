@@ -2,11 +2,11 @@
 <%= form_for @logro do |f| %>
 <div class="form-group">
 <%= f.label :estado %>
-<%= f.text_field :estado,:placeholder=>'Nombre del logro' %>
+<%= f.text_field :estado,:placeholder=>'Nombre del logro', class:"form-control" %>
 </div>
 <div class="form-group">
 <%= f.label :puntuación %>
-<%= f.number_field :puntuacion %>
+<%= f.number_field :puntuacion , class:"form-control"%>
 </div>
 <%= f.submit 'Guardar',:class=>'btn btn-warning' %>
 

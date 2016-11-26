@@ -13,7 +13,7 @@
 
   <div class="field">
     <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+    <%= f.email_field :email, autofocus: true , class:"form-control" %>
   </div>
 
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
@@ -21,20 +21,20 @@
   <% end %>
   <div class="field">
     <%= f.label :imagen %><i>(Opcional: ingrese una dirección a una imagen para usar como avatar)</i><br />
-    <%= f.text_field :imagen%>
+    <%= f.text_field :imagen , class:"form-control"%>
   </div>
   <div class="field">
     <%= f.label :telefono %><i>(Opcional: ingrese un número de teléfono para ser contactado)</i><br />
-    <%= f.text_field :telefono%>
+    <%= f.text_field :telefono , class:"form-control"%>
   </div>
   <div class="field">
     <%= f.label :ubicacion %><i>(Opcional: ingrese la ciudad donde reside)</i><br />
-    <%= f.text_field :ubicacion %>
+    <%= f.text_field :ubicacion , class:"form-control"%>
   </div>
 
   <div class="field">
     <%= f.label :password %> <i>(Dejar en blanco si no desea cambiar)</i><br />
-    <%= f.password_field :password, autocomplete: "off" %>
+    <%= f.password_field :password, autocomplete: "off", class:"form-control" %>
     <% if @minimum_password_length %>
       <br />
       <em><%= @minimum_password_length %> caracteres minimo</em>
@@ -43,12 +43,12 @@
 
   <div class="field">
     <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
+    <%= f.password_field :password_confirmation, autocomplete: "off", class:"form-control" %>
   </div>
 
   <div class="field">
     <%= f.label :current_password %> <i>(Necesita ingresar su contraseña para confirmar los cambios)</i><br />
-    <%= f.password_field :current_password, autocomplete: "off" %>
+    <%= f.password_field :current_password, autocomplete: "off", class:"form-control" %>
   </div>
 
   <div class="actions">

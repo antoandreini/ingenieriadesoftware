@@ -33,19 +33,25 @@
               </ul>
             </li>
           <% else %>
-            <li><button type="submit" class="btn"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>   <%= link_to "Iniciar sesión", new_user_session_path, :class => 'navbar-link'  %></button></li>
+            <li><button type="submit" class="btn"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>   <%= link_to "Iniciar sesión", new_user_session_path, :class => 'navbar-link '  %></button></li>
             <li><button type="submit" class="btn btn-warning"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span><%= link_to "¿No tenés cuenta? ¡Registrate!", new_user_registration_path, :class => 'navbar-link'  %> </button></li>
           <% end %>
         </ul>
         <%= form_tag '/buscar', :method => "get", id: "search-form", class:"navbar-form navbar-left" do %>
-        <%= text_field_tag :search, params[:search], placeholder: "Buscar gauchadas" %>
+        <%= text_field_tag :search, params[:search], placeholder: "Buscar gauchadas", class:"form-control" %>
         <%= submit_tag "Buscar" , class:'btn btn-warning' %>
         <% end %>
         <ul class="nav navbar-nav navbar-right">
           <% if user_signed_in? and current_user.administrador == true %>
+          <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-collapse-down" aria-hidden="true"></span> Opciones admin <span class="caret"></span></a>
+          <ul class="dropdown-menu">
            <li> <a href="/logros"> <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Ver Logros </a> </li>
+           <li> <a href="/reporteuser"> <span class="glyphicon glyphicon-tasks" aria-hidden="true"></span> Reporte de usuario </a> </li>
+           <li> <a href="/reporteganancia"> <span class="glyphicon glyphicon-tasks" aria-hidden="true"></span> Reporte de ganancias </a> </li>
+           </ul>
+           </li>
           <% end %>
-          <li><button type="button" class="btn btn-warning"><span class="glyphicon glyphicon-question-sign" aria-hidden="true"></span> Ayuda </button>
           </li>
             </ul>
       </div><!-- /.navbar-collapse -->

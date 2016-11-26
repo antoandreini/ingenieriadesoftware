@@ -71,7 +71,7 @@ def edit
   end
 
   def buscar
-    @gauchadas = Gauchada.search(params[:search]).order("created_at DESC")
+   @gauchadas = Gauchada.search(params[:search]).order("created_at DESC")
     if @gauchadas.present?
       render 'buscar'
     else
@@ -79,7 +79,8 @@ def edit
     end
   end
 
-def marcar
+
+  def marcar
     @gauchada= Gauchada.find(params[:id])
     @gauchada.cumplida=true
     if @gauchada.save
