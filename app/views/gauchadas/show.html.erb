@@ -133,8 +133,15 @@
 </div>
                     </div>
                   </div> 
- <span style="display:none;">***</span>
-<script type="text/javascript" language="javascript" id="pnyxeDiscussItJs" src="https://www.pnyxe.shadow.com/PnyxeDiscussItJs.jsp"></script>
-<script type="text/javascript" language="javascript" id="pnyxeDiscussItInitJs555040">try { var zpbw_webWidgetClientKey = "9BDbkcUryT5PnX8IZsGHdg"; var pnyxeDiscussIt = new PnyxeDiscussIt(); pnyxeDiscussIt.init("555040"); } catch (e) {}</script>
-<noscript><a href="https://www.pnyxe.shadow.com/DiscussIt-comment-system?utm_source=wwcCodeSpanPromotion1" rel="nofollow">Comment System</a></noscript>
+  <div class="row">
+    <div class="col-md-12 ">
+      <% if user_signed_in? %>
+      <!-- begin Caja de comentarios -->
+      <div id="HCB_comment_box"><a href="http://www.htmlcommentbox.com">Widget</a> is loading comments...</div>
+      <link rel="stylesheet" type="text/css" href="//www.htmlcommentbox.com/static/skins/bootstrap/twitter-bootstrap.css?v=0" />
+      <script type="text/javascript" id="hcb"> /*<!--*/ if(!window.hcb_user){hcb_user={};} (function(){var s=document.createElement("script"), l=hcb_user.PAGE || (""+window.location).replace(/'/g,"%27"), h="//www.htmlcommentbox.com";s.setAttribute("type","text/javascript");s.setAttribute("src", h+"/jread?page="+encodeURIComponent(l).replace("+","%2B")+"&opts=16862&num=10&ts=1480277147128");if (typeof s!="undefined") document.getElementsByTagName("head")[0].appendChild(s);})(); /*-->*/ </script>
+      <!-- end Caja de comentarios -->    
+      <% end %>
+    </div>
+  </div>  
 </div>
