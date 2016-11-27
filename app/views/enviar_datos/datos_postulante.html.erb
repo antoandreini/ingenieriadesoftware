@@ -1,0 +1,13 @@
+<p>Hola <%= @user.nombre %>!</p>
+
+<p>A continuación te mostramos los datos del postulante que aceptaste para tu gauchada "<%=@gauchada.titulo %>" :</p>
+
+<p>Nombre: <%=@user_postulacion.nombre %> </p>
+<p>Email: <%=@user_postulacion.email %> </p>
+<% if @user_postulacion.telefono.present? %>
+  <p>Telefono:<%=@user_postulacion.telefono %> </p>
+<% end %>
+
+<p>Recordá marcar la gauchada como realizada una vez que <%=@user_postulacion.nombre %> la cumpla! Luego vas a tener la opción de calificarlo. </p>
+<p>Gracias!</p>
+<p>Tus amigos de Gauchada.com</p>

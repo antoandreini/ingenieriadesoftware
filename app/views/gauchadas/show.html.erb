@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-md-4">
+  <div class="col-md-6">
     <% usuario=User.find(@gauchada.user_id) %>
     <% if Logro.count==1 %>
       <% @l=Logro.find(1) %>
@@ -12,7 +12,7 @@
     <% end %>
     <%end %>
 <div class="row">
-        <div class="col-xs-12 col-sm-8 col-md-12">
+        <div class="col-xs-12 col-sm-8 col-md-8">
             <div class="well well-sm">
                 <div class="row">
                     <div class="col-sm-6 col-md-4">
@@ -30,10 +30,58 @@
             </div>
         </div>
     </div>
+  <div class="row">
+    <div class="col-md-12 ">
+    <% if user_signed_in? and current_user.id == @gauchada.user_id %>
+      <% if @gauchada.postulacions.any? == false %>
+          <p>Todavía no hay postulaciones</p>
+      <% else %>
 
+        <table class="table table-striped" >
+        	<tr>
+        		<th> Usuario </th>
+            <th> Reputación </th>
+        		<th> Fecha de realización </th>
+            <th> Comentario </th>
+        		<th> Acciones </th>
+        	</tr>
+        <tr>
+
+          <% @gauchada.postulacions.each do |post| %>
+          <% us=User.find(post.user_id) %>
+      		<td> <%= us.nombre %></td>
+      		<td><% if Logro.count==1 %>
+                <% @repu= Logro.find(1) %>
+              <%else%>
+              <% @log=Logro.all %>
+                <% @log.each do |logr| %>
+          <% if logr.puntuacion <= us.puntuacion %>
+              <% @repu=logr %>
+            <% end %>
+          <% end %>
+          <%end %>
+          <cite><font color="#f0ad4e"><%= @repu.estado %></font> </cite>
+          </td>
+          <td> <%= post.fechaderealizacion %> </td>
+         <td ><%= post.comentarios %></td>
+      		<td> <% if post.estado == "Esperando" %>
+              <%= link_to "Aceptar", postulacion_aceptar_path(id:post.id), class: 'btn btn-block btn-warning' %>
+    				  <%= link_to "Rechazar", postulacion_rechazar_path(id:post.id), class: 'btn btn-block btn-danger' %>
+              <%else %>
+                <cite><font color="#f0ad4e"><%=post.estado %></font> </cite>
+              <% end %>
+      		</td>
+      	</tr>
+          <%end%>
+      </table>
+
+      <% end %>
+    <%end %>
+  </div>
+  </div>
 
   </div>
-                <div class="col-md-8 text-center">
+                <div class="col-md-6 text-center">
                     <div class="box">
                         <div class="box-content">
                             <h1 class="tag-title"><%= @gauchada.titulo %></h1>
@@ -51,16 +99,28 @@
                                 <h6> La gauchada no se encuentra cumplida </h6>
                                 <% if user_signed_in? and current_user.id == @gauchada.user_id %>
                                   <td>
-                                  <%= link_to "Marcar como realizada", realizar_path(:id =>@gauchada.id ), class: "btn btn-block" %>
+                                  <%= link_to "Marcar como realizada", realizar_path(:id =>@gauchada.id ), class: "btn btn-block btn-success" %>
+                                  <% if !(@gauchada.postulacions.where(estado:"Aceptada").any?) %>
                                   <%= link_to "Editar", edit_gauchada_path(@gauchada),  class: "btn btn-block btn-warning" %>
                                   <%= link_to "Eliminar", @gauchada, method: :delete, class: 'btn btn-block btn-danger' %>
+                                  <%end%>
                                   </td>
                                 <% else %>
                                    <% if user_signed_in? && @gauchada.postulacions.where(user:current_user).any? %>
+                                      <% if @gauchada.postulacions.where(user:current_user)[0].estado == "Esperando" %>
                                        <%= link_to "Eliminar postulacion", @gauchada.postulacions.where(user:current_user)[0], method: :delete, class: 'btn btn-block btn-danger' %>
+                                       <%else%>
+                                            <% if @gauchada.postulacions.where(user:current_user)[0].estado == "Rechazada" %>
+                                              <h5> Tu postulación ha sido rechazada </h5>
+                                            <%else%>
+                                                <h5> Tu postulación fue aceptada! En tu mail podrás encontrar los datos de contacto del usuario</h5>
+                                              <%end%>
+                                       <%end%>
                                     <% else %>
-                                      <% if user_signed_in? %>
+                                      <% if user_signed_in? && !(@gauchada.postulacions.where(estado:"Aceptada").any?) %>
                                        <%= link_to "Postularse", new_postulacion_path(gauchadaid:@gauchada), class: 'btn btn-block btn-warning' %>
+                                       <% else %>
+                                          <h6> Ya se ha aceptado una postulación para esta gauchada. </h6>
                                        <% end %>
                                     <% end %>
                                 <% end %>

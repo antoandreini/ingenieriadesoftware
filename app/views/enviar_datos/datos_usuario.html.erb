@@ -1,0 +1,12 @@
+<p>Hola <%= @user_postulacion.nombre %>!</p>
+
+<p>El usuario <%= @user.nombre %> aceptó tu postulación para la guachada "<%=@gauchada.titulo %>" ! A continuación te dejamos sus datos para que puedas ponerte en contacto:</p>
+
+<p>Nombre: <%=@user.nombre %> </p>
+<p>Email: <%=@user_postulacion.email %> </p>
+<% if @user_postulacion.telefono.present? %>
+  <p>Telefono:<%=@user_postulacion.telefono %> </p>
+<% end %>
+
+<p>Gracias!</p>
+<p>Tus amigos de Gauchada.com</p>

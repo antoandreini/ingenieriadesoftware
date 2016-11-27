@@ -10,7 +10,7 @@
 <%= g.label :comentarios %>
 </div>
 <div class="row">
-<%= g.text_field :comentarios,:placeholder=>'Comentarios', class:"form-control" %>
+<%= g.text_field :comentarios,:placeholder=>'Comentarios', maxlength: 140,size: 140, required: true, class:"form-control" %>
 </div>
 <%= g.submit 'Guardar',:class=>'btn btn-warning' %>
 <% end %>

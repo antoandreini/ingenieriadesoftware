@@ -1,0 +1,32 @@
+<table class="table table-striped">
+  <tr>
+    <th> Usuario </th>
+    <th> Reputación </th>
+    <th> Fecha de realización </th>
+    <th> Comentario </th>
+    <th> Acciones </th>
+  </tr>
+<tr>
+  <% @gauchada.postulacions.each do |post| %>
+  <% us=User.find(post.user_id) %>
+  <td> <%= us.nombre %></td>
+  <td><% if Logro.count==1 %>
+        <% @repu= Logro.find(1) %>
+      <%else%>
+      <% @log=Logro.all %>
+        <% @log.each do |logr| %>
+        <% if logr.puntuacion <= us.puntuacion %>
+      <% @repu=logr %>
+    <% end %>
+  <% end %>
+  <cite><font color="#f0ad4e"><%= @repu.estado %></font> </cite>
+  </td>
+  <td> <%= post.fechaderealizacion %> </td>
+  <td> <%= post.comentarios %> </td>
+  <td>
+      <a class="btn btn-warning btn-sm" href="/"> Aceptar</a>
+      <a class="btn btn-danger btn-sm" href="/"> Rechazar </a>
+  </td>
+</tr>
+<%end%>
+</table>
