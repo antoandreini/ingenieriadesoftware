@@ -32,6 +32,8 @@ def actualizar
   end
 
 def reporteusuario
+  @users=User.all
+  @users=@users.sort{|b,a| a.puntuacion <=> b.puntuacion}
   render 'reporteusuario'
 end
 
