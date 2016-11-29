@@ -16,7 +16,7 @@
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">  <% if user_signed_in? %>
             <li><p class = "navbar-text">Bienvenido/a <strong><%= current_user.nombre %></strong>.</p></li>
-            <% if current_user.puntos_para_gauchadas = 1 %>
+            <% if current_user.puntos_para_gauchadas == 1 %>
               <li><p class = "navbar-text">Tenés <strong><%= current_user.puntos_para_gauchadas %> punto</strong> para pedir gauchadas</p></li>
             <%else%>
                <li><p class = "navbar-text">Tenés <strong><%= current_user.puntos_para_gauchadas %> puntos</strong> para pedir gauchadas</p></li>
@@ -47,7 +47,7 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-collapse-down" aria-hidden="true"></span> Opciones admin <span class="caret"></span></a>
           <ul class="dropdown-menu">
            <li> <a href="/logros"> <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Ver Logros </a> </li>
-           <li> <a href="/reporteuser"> <span class="glyphicon glyphicon-tasks" aria-hidden="true"></span> Reporte de usuario </a> </li>
+           <li> <a href="/reporteusuario"> <span class="glyphicon glyphicon-tasks" aria-hidden="true"></span> Reporte de usuario </a> </li>
            <li> <a href="/reporteganancia"> <span class="glyphicon glyphicon-tasks" aria-hidden="true"></span> Reporte de ganancias </a> </li>
            </ul>
            </li>

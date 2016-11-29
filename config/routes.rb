@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   resources :postulacions
   resources :gauchadas
   get '/misgauchadas', to: 'gauchadas#misgauchadas'
+  get '/reporteusuario', to: 'comprar_puntos#reporteusuario'
+  get '/reporteganancia', to: 'comprar_puntos#reporteganancia'
+  get '/buscarpagos', to: 'comprar_puntos#buscarpagos'
   get '/realizar', to: 'gauchadas#marcar'
   root 'gauchadas#index'
   get '/comprar_puntos/edit', to: 'comprar_puntos#edit'

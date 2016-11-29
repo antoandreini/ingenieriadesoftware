@@ -7,7 +7,7 @@ class GauchadasController < ApplicationController
   end
 
   def index
-       @gauchadas=Gauchada.all
+      @gauchadas=Gauchada.all
   end
 
   def show
@@ -20,12 +20,9 @@ class GauchadasController < ApplicationController
     @user =current_user
     @gauchada.user_id = @user.id
     if @gauchada.save
-      @user.puntos_para_gauchadas-=1
+      @user.puntos_para_gauchadas -=1
       @user.save
       flash[:notice] = "Gauchada creada correctamente"
-      @user=current_user.id
-      @puntos=@user.puntos_para_gauchadas-1
-      @user.puntos_para_gauchadas=@puntos
       redirect_to (gauchadas_path)
     else
       flash[:notice] = "No se pudo crear la gauchada"
@@ -34,16 +31,17 @@ class GauchadasController < ApplicationController
   end
 
 
-def new
+  def new
   if(current_user.puntos_para_gauchadas <= 0)
     flash[:notice] = "No tiene suficientes puntos para pedir una gauchada"
     redirect_to(comprar_puntos_edit_path)
   else
   @gauchada = Gauchada.new
-  end
 end
 
-def edit
+  end
+
+  def edit
   @gauchada= Gauchada.find(params[:id])
   end
 
@@ -69,17 +67,15 @@ def edit
   def misgauchadas
     @gauchadas=Gauchada.where(user_id: current_user.id)
   end
-
   def buscar
    @gauchadas = Gauchada.search(params[:search]).order("created_at DESC")
     if @gauchadas.present?
       render 'buscar'
     else
       flash[:notice] = "No se encontraron gauchadas que coincidan con su busqueda"
+      redirect_to (gauchadas_path)
     end
   end
-
-
   def marcar
     @gauchada= Gauchada.find(params[:id])
     @gauchada.cumplida=true
