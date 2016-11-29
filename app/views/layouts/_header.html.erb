@@ -16,7 +16,11 @@
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">  <% if user_signed_in? %>
             <li><p class = "navbar-text">Bienvenido/a <strong><%= current_user.nombre %></strong>.</p></li>
-            <li><p class = "navbar-text">Tenés <strong><%= current_user.puntos_para_gauchadas %> puntos</strong> para pedir gauchadas.</p></li>
+            <% if current_user.puntos_para_gauchadas == 1 %>
+              <li><p class = "navbar-text">Tenés <strong><%= current_user.puntos_para_gauchadas %> punto</strong> para pedir gauchadas</p></li>
+            <%else%>
+               <li><p class = "navbar-text">Tenés <strong><%= current_user.puntos_para_gauchadas %> puntos</strong> para pedir gauchadas</p></li>
+            <%end%>
             <li><a href="/gauchadas/new"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Nueva gauchada</a></li>
               <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-collapse-down" aria-hidden="true"></span> Opciones <span class="caret"></span></a>
@@ -32,9 +36,6 @@
             <li><button type="submit" class="btn"><span class="glyphicon glyphicon-user" aria-hidden="true"></span>   <%= link_to "Iniciar sesión", new_user_session_path, :class => 'navbar-link '  %></button></li>
             <li><button type="submit" class="btn btn-warning"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span><%= link_to "¿No tenés cuenta? ¡Registrate!", new_user_registration_path, :class => 'navbar-link'  %> </button></li>
           <% end %>
-
-
-
         </ul>
         <%= form_tag '/buscar', :method => "get", id: "search-form", class:"navbar-form navbar-left" do %>
         <%= text_field_tag :search, params[:search], placeholder: "Buscar gauchadas", class:"form-control" %>
@@ -42,8 +43,16 @@
         <% end %>
         <ul class="nav navbar-nav navbar-right">
           <% if user_signed_in? and current_user.administrador == true %>
+          <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="glyphicon glyphicon-collapse-down" aria-hidden="true"></span> Opciones admin <span class="caret"></span></a>
+          <ul class="dropdown-menu">
            <li> <a href="/logros"> <span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span> Ver Logros </a> </li>
+           <li> <a href="/reporteusuario"> <span class="glyphicon glyphicon-tasks" aria-hidden="true"></span> Reporte de usuario </a> </li>
+           <li> <a href="/reporteganancia"> <span class="glyphicon glyphicon-tasks" aria-hidden="true"></span> Reporte de ganancias </a> </li>
+           </ul>
+           </li>
           <% end %>
+          </li>
             </ul>
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->

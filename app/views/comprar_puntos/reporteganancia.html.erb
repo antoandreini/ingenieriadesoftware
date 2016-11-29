@@ -1,0 +1,20 @@
+<div class="row">
+ <div class="col-md-6 col-md-offset-3">
+       <div class="panel panel-warning">
+<div class="panel-heading">
+  <h3 class="panel-title text-center">Reporte ganancias</h3>
+</div>
+  <div class="panel-body">
+<%= form_tag '/buscarpagos' ,method: 'get' do %>
+<div class="form-group" ALIGN=center>
+   <%= date_field_tag :fechadesde,Date.today, placeholder:"Desde", :max=>Date.today %>
+  </div>
+   <div class="form-group" ALIGN=center>
+     <%= date_field_tag :fechahasta,Date.today, placeholder:"Hasta", :max=>Date.today %>
+    </div>
+  <p ALIGN=center> <%= submit_tag "Buscar ganancia" , class:'btn btn-warning' %> </p ALIGN=center>
+   <% end %>
+ </div>
+  </div>
+
+   </div>

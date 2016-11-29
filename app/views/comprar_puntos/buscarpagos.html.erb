@@ -1,0 +1,27 @@
+<div class="panel panel-warning">
+    <div class="panel-heading">
+      <h3 class="panel-title text-center">Ganancias</h3 ALIGN=center>
+    </div>
+<div class="panel-body">
+    <div class="form-group">
+<table class="table" ALIGN=center>
+	<tr>
+		<th> Usuario </th>
+		<th> Monto </th>
+		<th> Fecha </th>
+	</tr>
+
+<%@total=0%>
+
+<% @pagos.each do |pago| %>
+<% @total=@total+pago.monto %>
+<tr>
+    <td> <%= User.find(pago.user_id).nombre %> </td>
+    <td> <%= pago.monto %> </td>
+    <td> <%= pago.created_at.strftime("%d %b %y")  %> </td>
+<% end %>
+</table ALIGN=center>
+<h3> Total: <%= @total %> </h3>
+</div>
+</div>
+</div>
