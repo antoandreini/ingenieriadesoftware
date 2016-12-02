@@ -1,0 +1,13 @@
+ <table class="table table-striped" >
+          <tr>
+            <th> Usuario </th>
+            <th> Comentario </th>
+          </tr>
+        <tr>
+<% @gauchada.comentarios.each do |c| %>
+<% user=User.find(c.user_id) %>
+<td> <%= user.nombre %></td>
+<td> <%= c.descripcion %> </td>
+</tr>
+<% end %>
+</table>

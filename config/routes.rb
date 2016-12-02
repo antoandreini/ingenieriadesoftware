@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :logros
   resources :postulacions
   resources :gauchadas
+  resources :comentarios
   get '/misgauchadas', to: 'gauchadas#misgauchadas'
   get '/realizar', to: 'gauchadas#marcar'
   root 'gauchadas#index'
