@@ -5,8 +5,12 @@ Rails.application.routes.draw do
   devise_for :users
   resources :logros
   resources :postulacions
-  resources :gauchadas
-  get '/misgauchadas', to: 'gauchadas#misgauchadas'
+  resources :gauchadas do
+    post "calificar", on: :member
+    get "misgauchadas", on: :collection
+  end
+  get '/mispostulaciones', to: 'gauchadas#mispostulaciones'
+  get '/gauchadascumplidas', to: 'gauchadas#cumplidas'
   get '/realizar', to: 'gauchadas#marcar'
   root 'gauchadas#index'
   get '/comprar_puntos/edit', to: 'comprar_puntos#edit'
@@ -14,9 +18,6 @@ Rails.application.routes.draw do
   get '/buscar', to: 'gauchadas#buscar'
   get '/postulacion/aceptar', to: 'postulacions#aceptar'
   get '/postulacion/rechazar', to: 'postulacions#rechazar'
-  get '/reporteusuario', to: 'comprar_puntos#reporteusuario'
-get '/reporteganancia', to: 'comprar_puntos#reporteganancia'
-get '/buscarpagos', to: 'comprar_puntos#buscarpagos'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
