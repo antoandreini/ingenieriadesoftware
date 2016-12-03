@@ -65,7 +65,7 @@ end
   end
 
   def misgauchadas
-    @gauchadas=Gauchada.where(user_id: current_user.id)
+       @gauchadas=Gauchada.where(user_id: current_user.id) 
   end
 
 
