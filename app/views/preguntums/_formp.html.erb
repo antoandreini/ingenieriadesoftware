@@ -1,0 +1,7 @@
+<%= form_for @pregunta do |l| %>
+<div class="form-group">
+<%= l.label :descripcion %>
+<%= l.text_area :descripcion,:placeholder=>'Descripción', class:"form-control" %>
+</div>
+<%= l.submit 'Enviar',:class=>'btn btn-warning' %>
+<% end %>

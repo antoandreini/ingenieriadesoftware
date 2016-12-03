@@ -7,7 +7,8 @@ Rails.application.routes.draw do
   resources :postulacions
 
   resources :gauchadas
-  resources :comentarios
+  resources :preguntums
+  resources :preguntas
   get '/misgauchadas', to: 'gauchadas#misgauchadas'
 
   resources :gauchadas do

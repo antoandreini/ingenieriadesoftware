@@ -94,7 +94,6 @@ end
         redirect_to (gauchadas_path)
     end
   end
-end
 
   def cumplidas
     @postulaciones = current_user.postulacions.where(estado: 'Aceptada')

@@ -163,14 +163,14 @@
                   </div> 
   <div class="row">
     <div class="col-md-6">
-      <h4> Comentarios </h4>
+      <h3> Comentarios </h3>
         <% if user_signed_in? %>
-            <!-- crear comentario -->
+            <%= link_to "Agregar Comentario", new_pregunta_path(gauchadaid:@gauchada), class: 'btn btn-block btn-warning' %>
         <% else %>
-          <h3> Debes <%= link_to "Iniciar sesión", new_user_session_path %> para poder realizar comentarios </h3>
+          <h5> Debes <%= link_to "Iniciar sesión", new_user_session_path %> para poder realizar comentarios </h5>
         <% end %>
-        <% if @gauchada.comentarios.size == 0 %>
-          <h3> No hay comentarios aun para esta gauchada </h3>
+        <% if @gauchada.preguntas.size == 0 %>
+          <h4> No hay comentarios aun para esta gauchada </h4>
         <% else %>
           <table class="table table-striped" >
           <tr>
@@ -178,14 +178,14 @@
             <th> Comentario </th>
           </tr>
           <tr>
-          <% @gauchada.comentarios.each do |c| %>
+          <% @gauchada.preguntas.each do |c| %>
           <% user=User.find(c.user_id) %>
           <td> <%= user.nombre %></td>
           <td> <%= c.descripcion %> </td>
           </tr>
         <% end %>
         <% end %>
-        </table>
+        </table> 
     </div>
   </div>  
 </div>
