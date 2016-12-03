@@ -33,22 +33,21 @@ class ComentariosController < ApplicationController
     @comentario = Comentario.new
   end
 
-  end
+  
 
   def edit
-  
+
   end
 
 
   def update
-   
+
   end
 
   def destroy
-  
+
   end
 
   def comentariosdegauchada
-    
   end
   end

@@ -34,7 +34,7 @@ class ComentariosController < ApplicationController
   @comentario = Comentario.new
 end
 
-  end
+  
 
   def edit
   @comentario= Comentario.find(params[:id])
@@ -42,7 +42,7 @@ end
 
 
   def update
-  
+
   end
 
   def destroy
