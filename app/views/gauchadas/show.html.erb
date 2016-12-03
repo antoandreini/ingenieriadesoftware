@@ -95,16 +95,44 @@
                             <br />
                             <% if @gauchada.cumplida %>
                                <h6> La gauchada se encuentra cumplida </h6>
-                              <%else %>
+                                <% if @gauchada.calificacion == nil %>
+                                      <%= form_for @gauchada, url: calificar_gauchada_path, method: :post do |g| %>
+                                      <div class="form-group">
+                                      <%= "Postivo" %>
+                                      <% g.label :calificacion %>
+                                      <%= g.radio_button :calificacion, 'positivo', checked: true %>
+                                      <%= "Negativo" %>
+                                      <% g.label :calificacion %>
+                                      <%= g.radio_button :calificacion, 'negativo' %>
+                                      </div>
+                                      <%= g.submit 'Guardar', data: {confirm: "¿Estas seguro?"} , :class=>'btn btn-warning' %>
+                                      <% end %>
+                                   <%end%>
+
+                               <%else %>
                                 <h6> La gauchada no se encuentra cumplida </h6>
+
                                 <% if user_signed_in? and current_user.id == @gauchada.user_id %>
                                   <td>
                                   <% if !(@gauchada.postulacions.where(estado:"Aceptada").any?) %>
-                                  <%= link_to "Editar", edit_gauchada_path(@gauchada),  class: "btn btn-block btn-warning" %>
-                                  <%= link_to "Eliminar", @gauchada, method: :delete, class: 'btn btn-block btn-danger' %>
+                                    <%= link_to "Editar", edit_gauchada_path(@gauchada),  class: "btn btn-block btn-warning" %>
+                                    <%= link_to "Eliminar", @gauchada, method: :delete, data: {confirm: "¿Estas seguro?"} ,  class: "btn btn-block btn-danger" %>
                                   <% else %>
-                                  <%= link_to "Marcar como realizada", realizar_path(:id =>@gauchada.id ), class: "btn btn-block btn-success" %>
-                                  <%end%>
+                                    <%= link_to "Marcar como realizada", realizar_path(:id =>@gauchada.id ), class: "btn btn-block btn-success" %>
+                                    <% if @gauchada.calificacion == nil %>
+                                      <%= form_for @gauchada, url: calificar_gauchada_path, method: :post do |g| %>
+                                      <div class="form-group">
+                                      <%= "Postivo" %>
+                                      <% g.label :calificacion %>
+                                      <%= g.radio_button :calificacion, 'positivo', checked: true %>
+                                      <%= "Negativo" %>
+                                      <% g.label :calificacion %>
+                                      <%= g.radio_button :calificacion, 'negativo' %>
+                                      </div>
+                                      <%= g.submit 'Guardar', data: {confirm: "¿Estas seguro?"} ,:class=>'btn btn-warning' %>
+                                      <% end %>
+                                   <%end%>
+                                   <%end%>
                                   </td>
                                 <% else %>
                                    <% if user_signed_in? && @gauchada.postulacions.where(user:current_user).any? %>
@@ -126,18 +154,32 @@
                                     <% end %>
                                 <% end %>
                               <% end %>
-                              <% if user_signed_in? %>
-                              <!-- begin Caja de comentarios -->
-                              <div id="HCB_comment_box"><a href="http://www.htmlcommentbox.com">Widget</a> is loading comments...</div>
-                              <link rel="stylesheet" type="text/css" href="//www.htmlcommentbox.com/static/skins/bootstrap/twitter-bootstrap.css?v=0" />
-                              <script type="text/javascript" id="hcb"> /*<!--*/ if(!window.hcb_user){hcb_user={};} (function(){var s=document.createElement("script"), l=hcb_user.PAGE || (""+window.location).replace(/'/g,"%27"), h="//www.htmlcommentbox.com";s.setAttribute("type","text/javascript");s.setAttribute("src", h+"/jread?page="+encodeURIComponent(l).replace("+","%2B")+"&opts=16862&num=10&ts=1480277147128");if (typeof s!="undefined") document.getElementsByTagName("head")[0].appendChild(s);})(); /*-->*/ </script>
-                              <!-- end Caja de comentarios -->
-                              <% end %>
-                        </div>
+
                     </div>
                   </div>
-</div>
-                    </div>
+                  <hr />
+                  <% if user_signed_in? %>
+                      <%= link_to "Agregar Comentario", new_pregunta_path(gauchadaid:@gauchada), class: 'btn btn-block btn-warning' %>
+                  <% else %>
+                    <h5> Debes <%= link_to "Iniciar sesión", new_user_session_path %> para poder realizar comentarios </h5>
+                  <% end %>
+                  <% if @gauchada.preguntas.size == 0 %>
+                    <h4> No hay comentarios aun para esta gauchada </h4>
+                  <% else %>
+                    <table class="table table-striped" >
+                    <tr>
+                      <th> Usuario </th>
+                      <th> Comentario </th>
+                    </tr>
+                    <tr>
+                    <% @gauchada.preguntas.each do |c| %>
+                    <% user=User.find(c.user_id) %>
+                    <td> <%= user.nombre %></td>
+                    <td> <%= c.descripcion %> </td>
+                    </tr>
+                  <% end %>
+                  <% end %>
+                  </table>
                   </div>
-  
+
 </div>

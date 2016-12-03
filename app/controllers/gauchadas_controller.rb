@@ -67,6 +67,13 @@ end
   def misgauchadas
     @gauchadas=Gauchada.where(user_id: current_user.id)
   end
+
+
+  def mispostulaciones
+    @postulaciones=Postulacion.where(user_id: current_user.id)
+    @gauchadas=Gauchada.all
+  end
+
   def buscar
    @gauchadas = Gauchada.search(params[:search]).order("created_at DESC")
     if @gauchadas.present?
@@ -87,4 +94,32 @@ end
         redirect_to (gauchadas_path)
     end
   end
+
+  def cumplidas
+    @postulaciones = current_user.postulacions.where(estado: 'Aceptada')
+  end
+
+  def calificar
+      @gauchada= Gauchada.find(params[:id])
+       @gauchada.calificacion = params[:gauchada][:calificacion]
+       p=@gauchada.postulacions.where(estado: 'Aceptada') [0]
+       user=User.find(p.user_id)
+       if @gauchada.save
+        if(@gauchada.calificacion == "positivo")
+          user.puntos_para_gauchadas += 1
+          user.puntuacion += 1
+        else
+          user.puntos_para_gauchadas -= 2
+          user.puntuacion -= 2
+        end
+        user.save
+        flash[:notice] = "Gauchada calificada correctamente"
+        redirect_to (gauchadas_path)
+      else
+       flash[:notice] = "No se pudo calificar la gauchada"
+        redirect_to (gauchadas_path)
+      end
+
+  end
+
 end

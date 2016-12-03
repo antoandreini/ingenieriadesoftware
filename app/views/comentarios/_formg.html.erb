@@ -1,0 +1,9 @@
+<%= form_for @comentario do |c| %>
+<div class="form-group">
+<%= g.label :descripcion %>
+</div>
+<div class="form-group">
+<%= g.text_area :descripcion,:placeholder=>'Descripción', class:"form-control" %>
+</div>
+<%= g.submit 'Guardar',:class=>'btn btn-warning' %>
+<% end %>

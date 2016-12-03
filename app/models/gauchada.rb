@@ -1,6 +1,7 @@
 class Gauchada < ActiveRecord::Base
-  has_many :pregunta
+  has_many :preguntas
   has_many :postulacions
+  has_many :comentarios
   belongs_to :usuario
   validates_associated :usuario
   validates :titulo, presence: true

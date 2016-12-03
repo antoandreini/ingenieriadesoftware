@@ -1,0 +1,52 @@
+<div class="panel panel-warning" ALIGN=center>
+    <div class="panel-heading">
+      <h3 class="panel-title text-center">Ranking usuario</h3 ALIGN=center>
+    </div>
+<div class="panel-body">
+    <div class="form-group">
+<table class="table" ALIGN=center>
+	<tr>
+		<th> Puesto </th>
+		<th> Usuario </th>
+		<th> Puntaje </th>
+	</tr>
+<% @i=1%>
+<% @users=User.all %>
+<% @users.order(:puntos_para_gauchadas).reverse_order.each do |usuario| %>
+<tr>
+    <td><h2> <%= @i %><h2> </td>
+    <td> <% if Logro.count==1 %>
+      <% @l=Logro.find(1) %>
+    <%else%>
+    <% @logro=Logro.all %>
+    <% @logro.each do |logro| %>
+    <% if logro.puntuacion <= usuario.puntuacion %>
+        <% @l=logro %>
+        <% end %>
+    <% end %>
+    <%end %>
+<div class="row">
+        <div class="col-xs-12 col-sm-8 col-md-8">
+            <div class="well well-sm">
+                <div class="row">
+                    <div class="col-sm-6 col-md-4">
+                      <% if usuario.imagen != nil %>
+                          <%= image_tag usuario.imagen, size:"150x200", class: "img-rounded img-responsive"%>
+                      <% else %>
+                       <img src="http://static.topixcdn.com/pics/user_avatar_empty.png" alt="" class="img-rounded img-responsive" >
+                       <% end %>
+                    </div>
+                    <div class="col-sm-6 col-md-8">
+                        <h4><%= usuario.nombre %></h4>
+                        <small><cite><font color="#f0ad4e"><%=@l.estado %></font> </cite></small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> </td>
+    <td><h2> <%= usuario.puntos_para_gauchadas  %></h2> </td>
+    <% @i+=1%>
+<% end %>
+</table ALIGN=center>
+</div>
+</div>
