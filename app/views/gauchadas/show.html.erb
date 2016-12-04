@@ -158,7 +158,7 @@
                     </div>
                   </div>
                   <hr />
-                  <% if user_signed_in?  %>
+                  <% if user_signed_in? && !(@gauchada.cumplida)  %>
                    <% if !(@gauchada.user_id == current_user.id) %>
                     <%= form_tag '/comentario' do %>
                     <div class="form-group">
@@ -170,7 +170,9 @@
                   <% end %>
                   <% end %>
                   <% else %>
+                  <% if !(@gauchada.cumplida) %>
                     <h5> Debes <%= link_to "Iniciar sesión", new_user_session_path %> para poder realizar comentarios </h5>
+                  <% end %>
                   <% end %>
                   <% if @gauchada.pregunta.size == 0 %>
                     <h4> No hay comentarios aun para esta gauchada </h4>
