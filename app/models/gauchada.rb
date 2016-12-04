@@ -1,5 +1,5 @@
 class Gauchada < ActiveRecord::Base
-  has_many :preguntas
+  has_many :pregunta
   has_many :postulacions
   has_many :comentarios
   belongs_to :usuario

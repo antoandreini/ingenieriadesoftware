@@ -158,28 +158,50 @@
                     </div>
                   </div>
                   <hr />
-                  <% if user_signed_in? %>
-                      <%= link_to "Agregar Comentario", new_pregunta_path(gauchadaid:@gauchada), class: 'btn btn-block btn-warning' %>
+                  <% if user_signed_in?  %>
+                   <% if !(@gauchada.user_id == current_user.id) %>
+                    <%= form_tag '/comentario' do %>
+                    <div class="form-group">
+                      <%= hidden_field_tag :gauchada_id, @gauchada.id %>
+                      <%= label_tag :cuerpo, 'Nuevo comentario' %>
+                      <%= text_area_tag :cuerpo, params[:cuerpo], placeholder: 'Comentario', class:"form-control" %>
+                    </div>
+                    <%= submit_tag 'Enviar',:class=>'btn btn-warning' %>
+                  <% end %>
+                  <% end %>
                   <% else %>
                     <h5> Debes <%= link_to "Iniciar sesión", new_user_session_path %> para poder realizar comentarios </h5>
                   <% end %>
-                  <% if @gauchada.preguntas.size == 0 %>
+                  <% if @gauchada.pregunta.size == 0 %>
                     <h4> No hay comentarios aun para esta gauchada </h4>
                   <% else %>
-                    <table class="table table-striped" >
-                    <tr>
-                      <th> Usuario </th>
-                      <th> Comentario </th>
-                    </tr>
-                    <tr>
-                    <% @gauchada.preguntas.each do |c| %>
+                    <% @gauchada.pregunta.order(:created_at).reverse_order.each do |c| %>
                     <% user=User.find(c.user_id) %>
-                    <td> <%= user.nombre %></td>
-                    <td> <%= c.descripcion %> </td>
-                    </tr>
+                    <div class="panel panel-warning">
+                      <div class="panel-heading">
+                        <h3 class="panel-title">  <%= user.nombre %> preguntó:</h3>
+                      </div>
+                      <div class="panel-body"> <%= c.cuerpo %> | <small><cite><%= c.fecha %> </cite></small></div>
+                      <% if c.respuesta == nil %>
+                        <% if @gauchada.user_id == current_user.id %>
+                        <%= form_tag '/respuesta' do %>
+                        <div class="form-group">
+                          <%= hidden_field_tag :id, c.id %>
+                          <%= label_tag :respuesta, 'Responder' %>
+                          <%= text_area_tag :respuesta, params[:respuesta], placeholder: 'Respuesta', class:"form-control" %>
+                        </div>
+                        <%= submit_tag 'Enviar',:class=>'btn btn-warning' %>
+                        <% end %>
+                        <%end %>
+                      <% else %>
+                      <div class="panel-footer"> <h3  class="panel-title"> <%= usuario.nombre %> respondió:</h3> </div>
+                        <div class="panel-body"> <%= c.respuesta %></div>
+                        <%end %>
+                    </div>
+
                   <% end %>
                   <% end %>
-                  </table>
+
                   </div>
 
 </div>

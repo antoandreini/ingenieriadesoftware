@@ -28,6 +28,8 @@ Rails.application.routes.draw do
   get '/reporteusuario', to: 'comprar_puntos#reporteusuario'
   get '/reporteganancia', to: 'comprar_puntos#reporteganancia'
   get '/buscarpagos', to: 'comprar_puntos#buscarpagos'
+  post '/comentario', to: 'pregunta#create'
+  post '/respuesta', to: 'pregunta#responder'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
