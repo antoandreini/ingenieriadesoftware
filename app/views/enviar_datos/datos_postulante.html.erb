@@ -4,7 +4,7 @@
 
 <p>Nombre: <%=@user_postulacion.nombre %> </p>
 <p>Email: <%=@user_postulacion.email %> </p>
-<% if @user_postulacion.telefono.present? %>
+<% if !(@user_postulacion.telefono == nil) %>
   <p>Telefono:<%=@user_postulacion.telefono %> </p>
 <% end %>
 
