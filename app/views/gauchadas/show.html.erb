@@ -164,7 +164,7 @@
                     <div class="form-group">
                       <%= hidden_field_tag :gauchada_id, @gauchada.id %>
                       <%= label_tag :cuerpo, 'Nuevo comentario' %>
-                      <%= text_area_tag :cuerpo, params[:cuerpo], placeholder: 'Comentario', class:"form-control" %>
+                      <%= text_area_tag :cuerpo, params[:cuerpo], placeholder: 'Comentario', required: true, class:"form-control" %>
                     </div>
                     <%= submit_tag 'Enviar',:class=>'btn btn-warning' %>
                   <% end %>
@@ -190,7 +190,7 @@
                         <div class="form-group">
                           <%= hidden_field_tag :id, c.id %>
                           <%= label_tag :respuesta, 'Responder' %>
-                          <%= text_area_tag :respuesta, params[:respuesta], placeholder: 'Respuesta', class:"form-control" %>
+                          <%= text_area_tag :respuesta, params[:respuesta], placeholder: 'Respuesta', required: true, class:"form-control" %>
                         </div>
                         <%= submit_tag 'Enviar',:class=>'btn btn-warning' %>
                         <% end %>
