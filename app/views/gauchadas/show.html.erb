@@ -94,14 +94,15 @@
                             <p><%= @gauchada.descripcion %></p>
                             <br />
                             <% if @gauchada.cumplida %>
-                               <h6> La gauchada se encuentra cumplida </h6>
-                               <% if @gauchada.calificacion == nil %>
+                              <h6> La gauchada se encuentra cumplida </h6>
+                              <% if @gauchada.calificacion == nil %>
+                                <% if @gauchada.user_id == current_user.id %>
                                   <%= form_for @gauchada, url: calificar_gauchada_path, method: :post do |g| %>
                                   <div class="form-group">
                                   <%= "Calificar Gauchada" %>
                                   </div>
                                   <div class="form-group">
-                                  <%= "Postivo" %>
+                                  <%= "Positivo" %>
                                   <% g.label :calificacion %>
                                   <%= g.radio_button :calificacion, 'positivo', checked: true %>
                                   <%= "Negativo" %>
@@ -113,7 +114,27 @@
                                   <%= g.submit 'Guardar', data: {confirm: "¿Estas seguro?"} , :class=>'btn btn-warning' %>
                                   <%end%>
                                   <%end%>
-
+                                  <% if @gauchada.postulacions[0].user_id == current_user.id %>
+                                    <h6> Todavia no te calificaron </h6>
+                                  <%end%>
+                              <%else%>  
+                                <% if @gauchada.user_id == current_user.id %>
+                                  <div class="container-fluid">
+                                  <%= "Calificaste " +  @gauchada.calificacion %>
+                                  </div>
+                                  <div class="container-fluid">
+                                  <%= "Tu comentario: " + @gauchada.comentariocal %>
+                                  </div>
+                                  <%end%>
+                                  <%end%>
+                                <% if @gauchada.postulacions[0].user_id == current_user.id %>
+                                    <div class="container-fluid">
+                                    <%= "Te calificaron " +  @gauchada.calificacion %>
+                                    </div>
+                                    <div class="container-fluid">
+                                    <%= "Comentario: " + @gauchada.comentariocal %>
+                                    </div>
+                                  <%end%> 
                             <%else %>
                                 <h6> La gauchada no se encuentra cumplida </h6>
 
@@ -124,25 +145,7 @@
                                     <%= link_to "Eliminar", @gauchada, method: :delete, data: {confirm: "¿Estas seguro?"} ,  class: "btn btn-block btn-danger" %>
                                   <% else %>
                                     <%= link_to "Marcar como realizada", realizar_path(:id =>@gauchada.id ), class: "btn btn-block btn-success" %>
-                                    <% if @gauchada.calificacion == nil %>
-                                      <%= form_for @gauchada, url: calificar_gauchada_path, method: :post do |g| %>
-                                      <div class="form-group">
-                                      <%= "Calificar Gauchada" %>
-                                      </div>
-                                      <div class="form-group">
-                                      <%= "Postivo" %>
-                                      <% g.label :calificacion %>
-                                      <%= g.radio_button :calificacion, 'positivo', checked: true %>
-                                      <%= "Negativo" %>
-                                      <% g.label :calificacion %>
-                                      <%= g.radio_button :calificacion, 'negativo' %>
-                                      <% g.label :comentariocal %>
-                                      <%= g.text_area :comentariocal,:placeholder=>'Comentarios Sobre El Postulante. ¿Fue Amable? ¿Cumplio Con Todo?', class:"form-control"  %>
-                                      </div>
-                                      <%= g.submit 'Guardar', data: {confirm: "¿Estas seguro?"} ,:class=>'btn btn-warning' %>
-                                      <% end %>
-                                   <%end%>
-                                   <%end%>
+                                    <%end%>
                                   </td>
                                 <% else %>
                                    <% if user_signed_in? && @gauchada.postulacions.where(user:current_user).any? %>
@@ -153,15 +156,7 @@
                                               <h5> Tu postulación ha sido rechazada </h5>
                                             <%else%>
                                                 <h5> Tu postulación fue aceptada! En tu mail podrás encontrar los datos de contacto del usuario</h5>
-                                                <% if(@gauchada.calificacion != nil) %>
-                                                  <div class="container-fluid">
-                                                  <%= "Te calificaron " +  @gauchada.calificacion %>
-                                                  </div>
-                                                  <div class="container-fluid">
-                                                  <%= "Comentario: " + @gauchada.comentariocal %>
-                                                  </div>
-                                                  <%end%>
-                                              <%end%>
+                                            <%end%>
                                        <%end%>
                                     <% else %>
                                       <% if user_signed_in? && !(@gauchada.postulacions.where(estado:"Aceptada").any?) %>
