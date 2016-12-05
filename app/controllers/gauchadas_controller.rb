@@ -88,10 +88,10 @@ end
     @gauchada.cumplida=true
     if @gauchada.save
         flash[:notice] = "Gauchada marcada como cumplida"
-        redirect_to (gauchadas_path)
+        redirect_to @gauchada
     else
         flash[:notice] = "No se pudo marcar la gauchada como cumplida"
-        redirect_to (gauchadas_path)
+        redirect_to @gauchada
     end
   end
 
@@ -115,10 +115,10 @@ end
         end
         user.save
         flash[:notice] = "Gauchada calificada correctamente"
-        redirect_to (gauchadas_path)
+        redirect_to @gauchada
       else
        flash[:notice] = "No se pudo calificar la gauchada"
-        redirect_to (gauchadas_path)
+        redirect_to @gauchada
       end
 
   end

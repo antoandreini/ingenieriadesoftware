@@ -1,9 +1,9 @@
-  <% ver= false %>
+  <%verif=false%>
   <% @postulaciones.each do |postulacion| %>
-  <% ver= true %>
   <% pos = postulacion.gauchada_id %>
     <% gauchada = @gauchadas.find(pos) %>
     <% if (gauchada.cumplida == false)%>
+    <%verif=true%>
     <div class="row">
          <div class="col-md-4"></div>
           <div class="col-md-4">
@@ -26,6 +26,6 @@
     </div>
   <% end %>
   <% end %>
-  	<% if ver == false %>
-	   	<h3  ALIGN=CENTER> <td colspan="3"> No Tiene Postulaciones </h3>
-  	<% end %>
+  <% if verif == false %>
+	 	<h3  ALIGN=CENTER> <td colspan="3"> No Tiene Postulaciones </h3>
+  <% end %>

@@ -1,6 +1,8 @@
+  <% verifico=false %>
   <% @postulaciones.each do |post| %>
     <% gauchada = post.gauchada %>
     <% if (post.gauchada.cumplida == true)%>
+      <%verifico=true%>    
     <div class="row">
          <div class="col-md-4"></div>
           <div class="col-md-4">
@@ -20,6 +22,6 @@
     </div>
   <% end %>
   <% end %>
-    <% if @postulaciones.size == 0 %>
+    <% if verifico == false %>
       <h3  ALIGN=CENTER> <td colspan="3"> No Tiene Guachadas cumplidas </h3>
    <% end %>
