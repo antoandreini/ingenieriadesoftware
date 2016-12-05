@@ -123,8 +123,10 @@
                                   <%= "Calificaste " +  @gauchada.calificacion %>
                                   </div>
                                   <div class="container-fluid">
+                                  <% if @gauchada.comentariocal != "" %>
                                   <%= "Tu comentario: " + @gauchada.comentariocal %>
                                   </div>
+                                  <%end%> 
                                   <%end%>
                                   <%end%>
                                 <% if @gauchada.postulacions[0].user_id == current_user.id %>
@@ -132,8 +134,10 @@
                                     <%= "Te calificaron " +  @gauchada.calificacion %>
                                     </div>
                                     <div class="container-fluid">
+                                    <% if @gauchada.comentariocal != "" %>
                                     <%= "Comentario: " + @gauchada.comentariocal %>
                                     </div>
+                                    <%end%> 
                                   <%end%> 
                             <%else %>
                                 <h6> La gauchada no se encuentra cumplida </h6>
