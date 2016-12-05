@@ -3,9 +3,9 @@
 <p>El usuario <%= @user.nombre %> aceptó tu postulación para la guachada "<%=@gauchada.titulo %>" ! A continuación te dejamos sus datos para que puedas ponerte en contacto:</p>
 
 <p>Nombre: <%=@user.nombre %> </p>
-<p>Email: <%=@user_postulacion.email %> </p>
-<% if !(@user_postulacion.telefono == nil) %>
-  <p>Telefono:<%=@user_postulacion.telefono %> </p>
+<p>Email: <%=@user.email %> </p>
+<% if !(@user.telefono == nil) %>
+  <p>Telefono:<%=@user.telefono %> </p>
 <% end %>
 
 <p>Gracias!</p>
