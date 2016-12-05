@@ -102,6 +102,7 @@ end
   def calificar
       @gauchada= Gauchada.find(params[:id])
        @gauchada.calificacion = params[:gauchada][:calificacion]
+       @gauchada.comentariocal = params[:gauchada][:comentariocal]
        p=@gauchada.postulacions.where(estado: 'Aceptada') [0]
        user=User.find(p.user_id)
        if @gauchada.save
