@@ -229,7 +229,7 @@
                 <div class="clearfix"></div>
               </div>
 			  <% if c.respuesta == nil %>
-                        <% if @gauchada.user_id == current_user.id %>
+                        <% if user_signed_in? && @gauchada.user_id == current_user.id %>
                         <%= form_tag '/respuesta' do %>
                         <div class="form-group">
                           <%= hidden_field_tag :id, c.id %>
