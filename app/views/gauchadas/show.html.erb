@@ -2,7 +2,7 @@
   <div class="col-md-6">
     <% usuario=User.find(@gauchada.user_id) %>
     <% if Logro.count==1 %>
-      <% @l=Logro.find(1) %>
+      <% @l=Logro.all[0] %>
     <%else%>
     <% @logro=Logro.all %>
     <% @logro.each do |logro| %>
