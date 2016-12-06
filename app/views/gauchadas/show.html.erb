@@ -5,6 +5,7 @@
       <% @l=Logro.all[0] %>
     <%else%>
     <% @logro=Logro.all %>
+    <% @l=@logro[0] %>
     <% @logro.each do |logro| %>
     <% if logro.puntuacion <= usuario.puntuacion %>
         <% @l=logro %>
