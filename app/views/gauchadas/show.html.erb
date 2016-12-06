@@ -117,7 +117,7 @@
                                   <% if @gauchada.postulacions[0].user_id == current_user.id %>
                                     <h6> Todavia no te calificaron </h6>
                                   <%end%>
-                              <%else%>  
+                              <%else%>
                                 <% if @gauchada.user_id == current_user.id %>
                                   <div class="container-fluid">
                                   <%= "Calificaste " +  @gauchada.calificacion %>
@@ -126,7 +126,7 @@
                                   <% if @gauchada.comentariocal != "" %>
                                   <%= "Tu comentario: " + @gauchada.comentariocal %>
                                   </div>
-                                  <%end%> 
+                                  <%end%>
                                   <%end%>
                                   <%end%>
                                 <% if @gauchada.postulacions[0].user_id == current_user.id %>
@@ -137,8 +137,8 @@
                                     <% if @gauchada.comentariocal != "" %>
                                     <%= "Comentario: " + @gauchada.comentariocal %>
                                     </div>
-                                    <%end%> 
-                                  <%end%> 
+                                    <%end%>
+                                  <%end%>
                             <%else %>
                                 <h6> La gauchada no se encuentra cumplida </h6>
 
@@ -175,6 +175,14 @@
                     </div>
                   </div>
                   <hr />
+                  <div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="panel panel-warning">
+        <div class="panel-heading">
+          Comentarios
+        </div>
+        <div class="panel-body comments">
                   <% if user_signed_in? && !(@gauchada.cumplida)  %>
                    <% if !(@gauchada.user_id == current_user.id) %>
                     <%= form_tag '/comentario' do %>
@@ -191,17 +199,35 @@
                     <h5> Debes <%= link_to "Iniciar sesión", new_user_session_path %> para poder realizar comentarios </h5>
                   <% end %>
                   <% end %>
-                  <% if @gauchada.pregunta.size == 0 %>
+				  <% if @gauchada.pregunta.size == 0 %>
                     <h4> No hay comentarios aun para esta gauchada </h4>
                   <% else %>
-                    <% @gauchada.pregunta.order(:created_at).reverse_order.each do |c| %>
-                    <% user=User.find(c.user_id) %>
-                    <div class="panel panel-warning">
-                      <div class="panel-heading">
-                        <h3 class="panel-title">  <%= user.nombre %> preguntó:</h3>
-                      </div>
-                      <div class="panel-body"> <%= c.cuerpo %> | <small><cite><%= c.fecha %> </cite></small></div>
-                      <% if c.respuesta == nil %>
+          <div class="clearfix"></div>
+          <hr>
+		    <% @gauchada.pregunta.order(:created_at).reverse_order.each do |c| %>
+                <% user=User.find(c.user_id) %>
+          <ul class="media-list">
+            <li class="media">
+              <div class="comment">
+                <a href="#" class="pull-left">
+                  <% if user.imagen != nil %>
+                          <%= image_tag user.imagen, size:"50x75",  class: "img-circle"%>
+                      <% else %>
+                       <img src="http://static.topixcdn.com/pics/user_avatar_empty.png" alt="" height="75" width="75" class="img-circle" >
+                       <% end %>
+                </a>
+                <div class="media-body">
+                  <strong class="text-warning"><%= user.nombre %></strong>
+                  <span class="text-muted">
+                  <small class="text-muted"><%= c.fecha %></small>
+                  </span>
+                  <p>
+                    <%= c.cuerpo %>
+                  </p>
+                </div>
+                <div class="clearfix"></div>
+              </div>
+			  <% if c.respuesta == nil %>
                         <% if @gauchada.user_id == current_user.id %>
                         <%= form_tag '/respuesta' do %>
                         <div class="form-group">
@@ -213,13 +239,38 @@
                         <% end %>
                         <%end %>
                       <% else %>
-                      <div class="panel-footer"> <h3  class="panel-title"> <%= usuario.nombre %> respondió:</h3> </div>
-                        <div class="panel-body"> <%= c.respuesta %></div>
-                        <%end %>
+              <ul class="media-list">
+                <li class="media">
+                  <div class="comment">
+                    <a href="#" class="pull-left">
+                      <% if usuario.imagen != nil %>
+                              <%= image_tag usuario.imagen, size:"50x75",  class: "img-circle"%>
+                          <% else %>
+                           <img src="http://static.topixcdn.com/pics/user_avatar_empty.png" alt="" height="75" width="75" class="img-circle" >
+                           <% end %>
+                    </a>
+                    <div class="media-body">
+                      <strong class="text-warning"> <%=usuario.nombre %></strong>
+                      <p>
+                        <%= c.respuesta %>
+                      </p>
                     </div>
+                    <div class="clearfix"></div>
+                  </div>
+                </li>
+                </ul>
+				<%end %>
+
+          </ul>
 
                   <% end %>
                   <% end %>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
                   </div>
 
