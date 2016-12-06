@@ -114,7 +114,7 @@
                                   <%= g.submit 'Guardar', data: {confirm: "¿Estas seguro?"} , :class=>'btn btn-warning' %>
                                   <%end%>
                                   <%end%>
-                                  <% if @gauchada.postulacions[0].user_id == current_user.id %>
+                                  <% if @gauchada.postulacions[0] != nil && @gauchada.postulacions[0].user_id == current_user.id %>
                                     <h6> Todavia no te calificaron </h6>
                                   <%end%>
                               <%else%>
@@ -129,7 +129,7 @@
                                   <%end%>
                                   <%end%>
                                   <%end%>
-                                <% if @gauchada.postulacions[0].user_id == current_user.id %>
+                                <% if @gauchada.postulacions[0] != nil && @gauchada.postulacions[0].user_id == current_user.id %>
                                     <div class="container-fluid">
                                     <%= "Te calificaron " +  @gauchada.calificacion %>
                                     </div>
