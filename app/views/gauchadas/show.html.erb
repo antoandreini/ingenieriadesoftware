@@ -184,7 +184,7 @@
           Comentarios
         </div>
         <div class="panel-body comments">
-                  <% if user_signed_in? && !(@gauchada.cumplida)  %>
+                  <% if user_signed_in? && !(@gauchada.cumplida) && !(@gauchada.postulacions.where(estado:"Aceptada").any?)  %>
                    <% if !(@gauchada.user_id == current_user.id) %>
                     <%= form_tag '/comentario' do %>
                     <div class="form-group">
