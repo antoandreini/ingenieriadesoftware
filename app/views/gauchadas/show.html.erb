@@ -196,7 +196,7 @@
                   <% end %>
                   <% end %>
                   <% else %>
-                  <% if !(@gauchada.cumplida) %>
+                  <% if !(@gauchada.cumplida) && !(@gauchada.postulacions.where(estado:"Aceptada").any?) %>
                     <h5> Debes <%= link_to "Iniciar sesión", new_user_session_path %> para poder realizar comentarios </h5>
                   <% end %>
                   <% end %>
